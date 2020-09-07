@@ -1,6 +1,16 @@
-- name: Install postgres packages
+- name: Update apt to use Postgres Repository
+  become: yes
+  script: setup-postgres/apt-repo.sh
+  args:
+    creates: /etc/apt/sources.list.d/pgdg.list
+- name: Install Postgres
   become: yes
   apt:
     pkg:
-    - postgresql
-    - postgresql-contrib
+    - postgresql-12
+    - postgresql-contrib-12
+- name: Install Multicorn
+  become: yes
+  apt:
+    pkg:
+    - postgresql-12-python3-multicorn
