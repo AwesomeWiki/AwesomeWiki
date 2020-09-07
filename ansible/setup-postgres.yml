@@ -3,14 +3,33 @@
   script: setup-postgres/apt-repo.sh
   args:
     creates: /etc/apt/sources.list.d/pgdg.list
-- name: Install Postgres
+- name: Install Postgres (and related Python packages)
   become: yes
   apt:
     pkg:
     - postgresql-12
     - postgresql-contrib-12
+    - python3-psycopg2
 - name: Install Multicorn
   become: yes
   apt:
     pkg:
     - postgresql-12-python3-multicorn
+- name: Create 'awesome' database
+  become: yes
+  become_user: postgres
+  postgresql_db:
+    name: awesome
+- name: Create 'api' schema
+  become: yes
+  become_user: postgres
+  postgresql_schema:
+    db: awesome
+    name: api
+- name: Install Multicorn extension on 'awesome' database in the 'api' schema
+  become: yes
+  become_user: postgres
+  postgresql_ext:
+    name: multicorn
+    db: awesome
+    schema: api
