@@ -1,0 +1,6 @@
+- hosts: sdc
+  tasks:
+    - debug:
+        msg: "Setting up the core server"
+    - name: Setup postgres
+      import_tasks: setup-postgres.yml

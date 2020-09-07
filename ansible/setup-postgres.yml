@@ -1,0 +1,6 @@
+- name: Install postgres packages
+  become: yes
+  apt:
+    pkg:
+    - postgresql
+    - postgresql-contrib
