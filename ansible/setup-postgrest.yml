@@ -1,0 +1,8 @@
+- name: Download and extract PostgREST
+  become: yes
+  unarchive:
+    src: https://github.com/PostgREST/postgrest/releases/download/v7.0.1/postgrest-v7.0.1-linux-x64-static.tar.xz
+    dest: /usr/bin
+    remote_src: "yes"
+  args:
+    creates: /usr/bin/postgrest

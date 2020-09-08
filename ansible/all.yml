@@ -2,5 +2,7 @@
   tasks:
     - debug:
         msg: "Setting up the core server"
-    - name: Setup postgres
+    - name: Setup Postgres
       import_tasks: setup-postgres.yml
+    - name: Setup PostgREST
+      import_tasks: setup-postgrest.yml
