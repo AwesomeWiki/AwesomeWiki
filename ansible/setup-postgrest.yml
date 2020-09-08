@@ -46,3 +46,6 @@
       copy:
         src: setup-postgrest/awesome.conf
         dest: /var/postgrest/awesome.conf
+        owner: root
+        group: root
+        mode: 0755
