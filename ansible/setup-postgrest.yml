@@ -6,3 +6,43 @@
     remote_src: "yes"
   args:
     creates: /usr/bin/postgrest
+- name: Create role for PostgREST requests
+  become: yes
+  become_user: postgres
+  block:
+    - name: Create 'web_anon' group role
+      postgresql_user:
+        db: awesome
+        name: web_anon
+        role_attr_flags: NOLOGIN
+    - name: Grant usage permission to 'web_anon'
+      postgresql_privs:
+        db: awesome
+        state: present
+        privs: USAGE
+        type: schema
+        objs: api
+        role: web_anon
+    - name: Create 'authenticator' user
+      postgresql_user:
+        db: awesome
+        name: authenticator
+        password: "awesome_cbmDgX99"
+        role_attr_flags: NOINHERIT
+    - name: Add 'authenticator' to 'web_anon'
+      postgresql_membership:
+        db: awesome
+        group: web_anon
+        target_role: authenticator
+- name: Copy PostgREST configuration file
+  become: yes
+  block:
+    - name: Create destination folder
+      file:
+        path: /var/postgrest
+        state: directory
+        mode: 0755
+    - name: Copy configuration file
+      copy:
+        src: setup-postgrest/awesome.conf
+        dest: /var/postgrest/awesome.conf
