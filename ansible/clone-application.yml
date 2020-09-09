@@ -1,0 +1,11 @@
+- name: Install Git
+  become: yes
+  apt:
+    pkg:
+      - git
+- name: Clone the AwesomeWiki Repo
+  become: yes
+  git:
+    repo: 'https://{{ansible_user}}:{{github_personal_token}}@github.ncsu.edu/engr-csc-sdc/2020FallTeam03.git'
+    dest: /var/AwesomeWiki
+    version: master
