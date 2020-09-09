@@ -49,3 +49,18 @@
         owner: root
         group: root
         mode: 0755
+- name: Add PostgREST as a service
+  become: yes
+  block:
+    - name: Copy service definition
+      copy:
+        src: setup-postgrest/postgrest.service
+        dest: /etc/systemd/system/postgrest.service
+    - name: Enable PostgREST service
+      service:
+        name: postgrest
+        enabled: yes
+    - name: Start PostgREST service
+      service:
+        name: postgrest
+        state: started
