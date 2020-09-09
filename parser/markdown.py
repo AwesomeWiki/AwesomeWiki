@@ -1,5 +1,3 @@
-import markdown
-
 if __name__ == '__main__':
     
     file_path = "C:/Users/slo4/Downloads/awesome-python-master/awesome-python-master/README.md"
@@ -21,14 +19,16 @@ if __name__ == '__main__':
             if not process:
                 process = True
             else:
-                my_dict[key] = values
+                newList = tuple(values)
+                my_dict[key] = newList
             key = new_string
             values = []
             list1.append(new_string)
         elif len(words) >= 3:
             if words[1].startswith('[') & process:
                 values.append(words[1])
-    my_dict[key] = values
+    newList = tuple(values)
+    my_dict[key] = newList
 
 
             
@@ -36,4 +36,5 @@ if __name__ == '__main__':
 
 
   
+
 
