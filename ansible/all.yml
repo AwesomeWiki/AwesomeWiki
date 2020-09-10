@@ -10,3 +10,5 @@
       import_tasks: clone-application.yml
     - name: Setup nginx
       import_tasks: setup-nginx.yml
+    - name: Install Sqitch
+      import_tasks: install-sqitch.yml

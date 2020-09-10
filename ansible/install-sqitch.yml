@@ -1,0 +1,7 @@
+- name: Install Sqitch and dependencies
+  become: yes
+  apt:
+    pkg:
+      - sqitch
+      - libdbd-pg-perl
+      - postgresql-client
