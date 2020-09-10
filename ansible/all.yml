@@ -2,5 +2,13 @@
   tasks:
     - debug:
         msg: "Setting up the core server"
-    - name: Setup postgres
+    - name: Setup Postgres
       import_tasks: setup-postgres.yml
+    - name: Setup PostgREST
+      import_tasks: setup-postgrest.yml
+    - name: Clone AwesomeWiki application
+      import_tasks: clone-application.yml
+    - name: Setup nginx
+      import_tasks: setup-nginx.yml
+    - name: Install Sqitch
+      import_tasks: install-sqitch.yml

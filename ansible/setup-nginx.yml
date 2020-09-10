@@ -1,0 +1,21 @@
+- name: Install Nginx
+  become: yes
+  apt:
+    pkg:
+    - nginx
+- name: Configure open firewall ports
+  become: yes
+  block:
+    - ufw:
+        rule: allow
+        name: Nginx Full
+    - ufw:
+        rule: allow
+        name: OpenSSH
+- name: Enable firewall
+  become: yes
+  block:
+    - ufw:
+        state: enabled
+        policy: reject
+        log: yes

@@ -9,6 +9,7 @@
     pkg:
     - postgresql-12
     - postgresql-contrib-12
+    - libpq-dev
     - python3-psycopg2
 - name: Install Multicorn
   become: yes

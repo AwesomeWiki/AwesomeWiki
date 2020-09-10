@@ -1,0 +1,13 @@
+# https://linuxconfig.org/how-to-create-systemd-service-unit-in-linux
+
+[Unit]
+Description = PostgREST REST API Server
+After = network.target postgresql.service
+Requires = network.target postgresql.service
+
+[Service]
+Type = simple
+ExecStart = /usr/bin/postgrest /var/postgrest/awesome.conf
+
+[Install]
+WantedBy = multi-user.target
