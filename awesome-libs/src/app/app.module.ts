@@ -4,6 +4,10 @@ import { NgModule }                             from '@angular/core';
 import { AppRoutingModule, RoutingComponents }  from './app-routing.module';
 import { AppComponent }                         from './app.component';
 
+import { CategoriesService } from './categories.service';
+
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -11,9 +15,10 @@ import { AppComponent }                         from './app.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [CategoriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
