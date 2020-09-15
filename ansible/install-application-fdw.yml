@@ -2,4 +2,4 @@
   become: yes
   command:
     chdir: /var/AwesomeWiki/fdws
-    cmd: python setup.py install
+    cmd: python3 setup.py install
