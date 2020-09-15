@@ -1,0 +1,5 @@
+- name: Install AwesomeWiki FDWs
+  become: yes
+  command:
+    chdir: /var/AwesomeWiki/fdws
+    cmd: python setup.py install

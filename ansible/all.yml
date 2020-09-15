@@ -13,3 +13,5 @@
       import_tasks: install-sqitch.yml
     - name: Clone AwesomeWiki application
       import_tasks: clone-application.yml
+    - name: Install AwesomeWiki FDWs
+      import_tasks: install-application-fdw.yml
