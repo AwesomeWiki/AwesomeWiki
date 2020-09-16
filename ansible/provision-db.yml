@@ -1,0 +1,5 @@
+- name: Run Sqitch plan
+  become: yes
+  command:
+    chdir: /var/AwesomeWiki/db
+    cmd: sqitch deploy
