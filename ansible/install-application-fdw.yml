@@ -1,3 +1,12 @@
+- name: Install pip
+  become: yes
+  apt:
+    pkg:
+    - python3-pip
+- name: Install 'setuptools'
+  become: yes
+  pip:
+    name: setuptools
 - name: Install AwesomeWiki FDWs
   become: yes
   command:
