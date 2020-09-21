@@ -7,6 +7,7 @@ Created on Mon Sep 14 10:54:49 2020
 
 import json
 import urllib.request
+#Cite from https://www.powercms.in/blog/how-get-json-data-remote-url-python-script with some modifications
 def findPackageFromPyPi(package):
     url = 'https://pypi.python.org/pypi/' + package + '/json'
     response = urllib.request.urlopen(url)
