@@ -11,7 +11,7 @@
   "license": "",
   "scripts": {
     "ng": "ng",
-    "start": "ng build && node server",
+    "start": "ng build && start http://localhost:3000 && node server",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
@@ -20,10 +20,12 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "~10.1.0",
+    "@angular/cdk": "^10.2.1",
     "@angular/common": "~10.1.0",
     "@angular/compiler": "~10.1.0",
     "@angular/core": "~10.1.0",
     "@angular/forms": "~10.1.0",
+    "@angular/material": "^10.2.1",
     "@angular/platform-browser": "~10.1.0",
     "@angular/platform-browser-dynamic": "~10.1.0",
     "@angular/router": "~10.1.0",

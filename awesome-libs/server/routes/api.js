@@ -11,17 +11,22 @@ router.get('/', (req, res) => {
 });
 
 // Get all categories for a given language
-router.get('/categories', (req, res) => {
+router.get('/categories/:prglang', (req, res) => {
 
-  // Get posts from the mock api
-  // This should ideally be replaced with a service that connects to MongoDB
+  var prglang = req.params.prglang;
+
+  console.log("Express API GET request with programming language: " + prglang);
+
+  // Mock api call. In final app, this will get from the core application's database
   axios.get(`${API}/posts`)
     .then(placeholder => {
       res.status(200).json(placeholder.data);
     })
     .catch(error => {
       res.status(500).send(error)
-    });
+  });
+  // End mock api call
+
 });
 
 module.exports = router;

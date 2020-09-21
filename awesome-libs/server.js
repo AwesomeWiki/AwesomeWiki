@@ -8,7 +8,7 @@ const api = require('./server/routes/api');
 
 var app 			= express();
 
-// Middleware
+// Express middleware set up
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 

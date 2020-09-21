@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ICategory } from './category';
 
 @Injectable({
@@ -8,15 +8,19 @@ import { ICategory } from './category';
 })
 export class CategoriesService {
 
-  constructor(private http : HttpClient) { }
+  private _prgLangSource = new Subject<string>();
+  prgLang$ = this._prgLangSource.asObservable();
 
-  getAllCategories() : Observable<ICategory[]> {
-    return this.http.get<ICategory[]>('/api/categories')
-    /*
-    return [
-      {title : 'test title', body: 'test body'},
-      {title : 'another title', body: 'another body'}
-    ];
-    */
+  constructor(
+    private http : HttpClient
+  ) { }
+
+  getAllCategories(prglang : string) : Observable<ICategory[]> {
+    return this.http.get<ICategory[]>('/api/categories/' + prglang)
+    // TODO: Add http error handling
+  }
+
+  sendMessage(message: string) {
+    this._prgLangSource.next(message);
   }
 }
