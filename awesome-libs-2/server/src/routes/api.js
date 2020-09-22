@@ -62,7 +62,7 @@ router.get('/:language/:category/libraries', (req,res) => {
 });
 
 // Get details about a specific library
-router.get('/:language/:category/libraries/:library', (req,res) => {
+router.get('/:language/:category/:library', (req,res) => {
 
 	var language = req.params.language;
 	var category = req.params.category;

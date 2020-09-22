@@ -22,7 +22,7 @@
 
       <v-layout wrap align-center>
         <v-flex xs12 sm6 d-flex>
-          <v-select v-model="selectedItem" :items="getLanguages()" item-text="title" label="Select a language" persistent-hint return-object single-line></v-select>
+          <v-select v-model="selectedItem" :items="languages" item-text="title" label="Select a language" persistent-hint return-object single-line></v-select>
         </v-flex>
         <v-btn rounded block color="blue darken-3" dark large @click="selectLanguage()">CONTINUE</v-btn>
       </v-layout>
@@ -36,31 +36,29 @@
   </v-container>
 </template>
 
+<!-- TODO: Fix formatting of dropdown menu -->
+
 <script>
   import LibsService from '@/services/LibsService'
+  //import axios from 'axios'
 
   export default {
     name: 'LanguageSelect',
-
-    // TODO: Add a getLanguages() function that is called in :items="getLanguages()" to return an array of languages to choose from
-
     data: () => ({
-      items: [
-        { title: 'javascript' },
-        { title: 'python' }
-      ],
       languages: [],
       selectedItem: null
     }),
     methods: {
       async getLanguages() {
         const response = await LibsService.getLanguages();
-        console.log(response.data);
         this.languages = response.data;
       },
       selectLanguage() {
         this.$router.push('/' + this.selectedItem.title + '/categories');
       }
+    },
+    mounted() {
+      this.getLanguages();
     }
   }
 </script>

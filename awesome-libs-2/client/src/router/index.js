@@ -32,7 +32,7 @@ export default new Router({
       component: LibrarySelect
     },
     {
-      path: '/:language/:category/libraries/:library',
+      path: '/:language/:category/:library',
       name: 'Library',
       component: Library
     }
