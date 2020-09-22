@@ -1,9 +1,12 @@
+import sys
 import scrapy
 from scrapy.crawler import CrawlerProcess
-import os
-os.system("python ../library_scraper/library_scraper/spiders/LibToInstallerMatching.py")
-from LibToInstallerMatching import QuotesSpider
+from scrapy import signals
+from scrapy.utils.project import get_project_settings
 
+from scrapy.signalmanager import dispatcher
+from LibToInstallerMatching import QuotesSpider
+    
 if __name__ == '__main__':
     
     file_path = "source_data/awesome-python-master-README.md"
@@ -37,12 +40,32 @@ if __name__ == '__main__':
     my_dict[key] = newList
     #print(my_dict)
 
-    process = CrawlerProcess(settings={})
+    results = []
+
+    def crawler_results(signal, sender, item, response, spider):
+        if item != None:
+            results.append(item)
+
+    dispatcher.connect(crawler_results, signal=signals.item_passed)
+
+    process = CrawlerProcess(get_project_settings())
 
     for category in my_dict:
         for address in my_dict[category]:
             address = address[address.find('(')+1:-1]
             if address.find('http') != -1:
-                process.crawl(QuotesSpider, start_url=address)
-                process.start() # the script will block here until the crawling is finished
+                process.crawl(QuotesSpider, address)
             print(address)
+    process.start() # the script will block here until the crawling is finished
+
+    original_stdout = sys.stdout # Save a reference to the original standard output
+
+    #TODO Store responses in file 
+
+    print(results)
+    with open('pip-out.txt', 'w') as f:
+        sys.stdout = f # Change the standard output to the file we created.
+        for pip in results:
+            print(pip)
+
+    sys.stdout = original_stdout
