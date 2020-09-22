@@ -1,0 +1,12 @@
+- name: Overwrite remote Sqitch plan with local version
+  become: yes
+  copy:
+    src: ../db/
+    dest: /var/AwesomeWiki/db
+    mode: 0744
+- name: Run Sqitch plan
+  become: yes
+  become_user: postgres
+  command:
+    chdir: /var/AwesomeWiki/db
+    cmd: sqitch rebase -y

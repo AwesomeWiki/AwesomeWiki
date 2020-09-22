@@ -1,0 +1,22 @@
+- name: Overwrite remote FDW with local version
+  become: yes
+  copy:
+    src: ../fdws/
+    dest: /var/AwesomeWiki/fdws
+    mode: 0744
+- name: Install pip
+  become: yes
+  apt:
+    pkg:
+    - python3-pip
+- name: Install libraries
+  become: yes
+  pip:
+    name:
+      - setuptools
+      - requests
+- name: Install AwesomeWiki FDWs
+  become: yes
+  command:
+    chdir: /var/AwesomeWiki/fdws
+    cmd: python3 setup.py install
