@@ -29,7 +29,7 @@
     }),
     methods: {
 			selectCategory() {
-				this.$router.push('/' + this.$route.params.language + '/' + this.selectedCategory.title );
+				this.$router.push('/' + this.$route.params.language + '/' + this.selectedCategory.title + '/libraries');
 			},
 			getCategories(language) {
 				var categories = [];

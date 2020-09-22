@@ -22,17 +22,17 @@ export default new Router({
       component: LanguageSelect
     },
     {
-      path: '/languages/:language',
+      path: '/:language/categories',
       name: 'CategorySelect',
       component: CategorySelect
     },
     {
-      path: '/:language/:category',
+      path: '/:language/:category/libraries',
       name: 'LibrarySelect',
       component: LibrarySelect
     },
     {
-      path: '/:language/:category/:library',
+      path: '/:language/:category/libraries/:library',
       name: 'Library',
       component: Library
     }

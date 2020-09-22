@@ -11,6 +11,7 @@
 </template>
 
 <script>
+
   export default {
     name: 'LibrarySelect',
 
@@ -35,7 +36,7 @@
     }),
     methods: {
 			selectCategory() {
-				this.$router.push('/' + this.$route.params.language + '/' + this.$route.params.category + '/' + this.selectedLibrary.title);
+				this.$router.push('/' + this.$route.params.language + '/' + this.$route.params.category + '/libraries/' + this.selectedLibrary.title);
 			},
 			getLibraries(language, category) {
 				// TODO: replace dummy data with express server api call

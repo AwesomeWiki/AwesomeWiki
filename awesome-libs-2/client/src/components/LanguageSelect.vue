@@ -22,7 +22,7 @@
 
       <v-layout wrap align-center>
         <v-flex xs12 sm6 d-flex>
-          <v-select v-model="selectedItem" :items="items" item-text="title" label="Select a language" persistent-hint return-object single-line></v-select>
+          <v-select v-model="selectedItem" :items="getLanguages()" item-text="title" label="Select a language" persistent-hint return-object single-line></v-select>
         </v-flex>
         <v-btn rounded block color="blue darken-3" dark large @click="selectLanguage()">CONTINUE</v-btn>
       </v-layout>
@@ -37,6 +37,8 @@
 </template>
 
 <script>
+  import LibsService from '@/services/LibsService'
+
   export default {
     name: 'LanguageSelect',
 
@@ -47,11 +49,17 @@
         { title: 'javascript' },
         { title: 'python' }
       ],
+      languages: [],
       selectedItem: null
     }),
     methods: {
+      async getLanguages() {
+        const response = await LibsService.getLanguages();
+        console.log(response.data);
+        this.languages = response.data;
+      },
       selectLanguage() {
-        this.$router.push('/languages/' + this.selectedItem.title);
+        this.$router.push('/' + this.selectedItem.title + '/categories');
       }
     }
   }
