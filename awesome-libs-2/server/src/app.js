@@ -20,7 +20,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 
 // Tell server to look for static files (html, css, json, etc.) in /public subdirectory
 app.use(express.static(path.join(__dirname, 'public'))); // Has dummy data
-//app.use(express.static(path.join(__dirname, '../../client/public')));
+app.use(express.static(path.join(__dirname, '../../client/dist')));
 
 // Mount for api routes
 app.use('/api', api);
