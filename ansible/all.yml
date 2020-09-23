@@ -7,8 +7,6 @@
       import_tasks: setup-postgres.yml
     - name: Setup PostgREST
       import_tasks: setup-postgrest.yml
-    - name: Setup nginx
-      import_tasks: setup-nginx.yml
     - name: Install Sqitch
       import_tasks: install-sqitch.yml
     - name: Clone AwesomeWiki application
@@ -17,3 +15,7 @@
       import_tasks: install-application-fdw.yml
     - name: Provision Database
       import_tasks: provision-db.yml
+    - name: Setup client application
+      import_tasks: setup-client-app.yml
+    - name: Setup nginx
+      import_tasks: setup-nginx.yml

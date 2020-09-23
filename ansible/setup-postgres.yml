@@ -2,7 +2,7 @@
   become: yes
   script: setup-postgres/apt-repo.sh
   args:
-    creates: /etc/apt/sources.list.d/pgdg.list
+    creates: /etc/apt/sources.list.d/nodesource.list
 - name: Install Postgres (and related Python packages)
   become: yes
   apt:

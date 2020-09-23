@@ -1,0 +1,16 @@
+# https://linuxconfig.org/how-to-create-systemd-service-unit-in-linux
+
+[Unit]
+Description = Awesome Client MVP Server
+After = network.target postgrest.service
+Requires = network.target postgrest.service
+
+[Service]
+Type = simple
+WorkingDirectory = /var/AwesomeWiki/awesome-libs-2/server
+ExecStart = /usr/bin/npm run server
+Restart = on-failure
+RestartSec = 5s
+
+[Install]
+WantedBy = multi-user.target

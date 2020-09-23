@@ -1,0 +1,41 @@
+- name: Add NodeSource PPA to apt
+  become: yes
+  script: setup-client-app/node-apt-repo.sh
+  args:
+    creates: /etc/apt/sources.list.d/nodesource.list
+- name: Install Node and NPM
+  become: yes
+  apt:
+    pkg:
+      - nodejs
+      - npm
+- name: Install client app dependencies (client)
+  become: yes
+  npm:
+    path: /var/AwesomeWiki/awesome-libs-2/client
+- name: Install client app dependencies (server)
+  become: yes
+  npm:
+    path: /var/AwesomeWiki/awesome-libs-2/server
+- name: Build client frontend
+  become: yes
+  command: npm run build
+  args:
+    chdir: /var/AwesomeWiki/awesome-libs-2/client
+- name: Add client application as a service
+  become: yes
+  block:
+    - name: Copy service definition
+      copy:
+        src: setup-client-app/awesome-client.service
+        dest: /etc/systemd/system/awesome-client.service
+    - name: Reload systemd
+      command: systemctl daemon-reload
+    - name: Enable Awesome Client service
+      service:
+        name: awesome-client
+        enabled: yes
+    - name: Start Awesome Client service
+      service:
+        name: awesome-client
+        state: started
