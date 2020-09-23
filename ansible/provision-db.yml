@@ -9,4 +9,10 @@
   become_user: postgres
   command:
     chdir: /var/AwesomeWiki/db
+    cmd: sqitch deploy
+- name: Re-run Sqitch plan
+  become: yes
+  become_user: postgres
+  command:
+    chdir: /var/AwesomeWiki/db
     cmd: sqitch rebase -y
