@@ -19,3 +19,25 @@
         state: enabled
         policy: reject
         log: yes
+- name: Disable default site
+  become: yes
+  command: unlink /etc/nginx/sites-enabled/default
+  args:
+    removes: /etc/nginx/sites-enabled/default
+- name: Copy NGINX configuration for awesome-client
+  become: yes
+  copy:
+    src: setup-nginx/sites-available/awesome-client
+    dest: /etc/nginx/sites-available/awesome-client
+    mode: 0744
+- name: Enable site for awesome-client
+  become: yes
+  file:
+    dest: /etc/nginx/sites-enabled/awesome-client
+    src: /etc/nginx/sites-available/awesome-client
+    state: link
+- name: Restart NGINX
+  become: yes
+  service:
+    name: nginx
+    state: restarted
