@@ -1,0 +1,64 @@
+<template>
+  <v-container>
+
+    <v-spacer></v-spacer>
+
+    <v-row class="text-center">
+      <v-col cols="12">
+        <v-img
+          :src="require('../assets/logo.svg')"
+          class="my-3"
+          contain
+          height="200"
+        />
+      </v-col>
+    </v-row>
+
+    <v-row class="mb-2">
+
+      <h1 class="display-2 font-weight-bold mb-3">
+        I am a 
+      </h1>
+
+      <v-layout wrap align-center>
+        <v-flex xs12 sm6 d-flex>
+          <v-select v-model="selectedItem" :items="languages" item-text="title" label="Select a language" persistent-hint return-object single-line></v-select>
+        </v-flex>
+        <v-btn rounded block color="blue darken-3" dark large @click="selectLanguage()">CONTINUE</v-btn>
+      </v-layout>
+
+      <h1 class="display-2 font-weight-bold mb-3">
+        programmer
+      </h1>
+      
+    </v-row>
+
+  </v-container>
+</template>
+
+<!-- TODO: Fix formatting of dropdown menu -->
+
+<script>
+  import LibsService from '@/services/LibsService'
+  //import axios from 'axios'
+
+  export default {
+    name: 'LanguageSelect',
+    data: () => ({
+      languages: [],
+      selectedItem: null
+    }),
+    methods: {
+      async getLanguages() {
+        const response = await LibsService.getLanguages();
+        this.languages = response.data;
+      },
+      selectLanguage() {
+        this.$router.push('/' + this.selectedItem.title + '/categories');
+      }
+    },
+    mounted() {
+      this.getLanguages();
+    }
+  }
+</script>
