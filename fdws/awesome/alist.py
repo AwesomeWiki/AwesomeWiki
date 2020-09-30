@@ -1,5 +1,6 @@
 import multicorn
-import requests, re
+import requests, re, json
+import redis
 
 class ForeignDataWrapper(multicorn.ForeignDataWrapper):
 
@@ -7,11 +8,25 @@ class ForeignDataWrapper(multicorn.ForeignDataWrapper):
         super(ForeignDataWrapper, self).__init__(options, columns)
         self.columns = columns
         self.options = options
+        self.redis = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
+
+    def getParsedData(self):
+        redis_key = "alist:{repo}".format(repo = self.options['repo'])
+        json_parsed_data = self.redis.get(redis_key)
+
+        if not json_parsed_data:
+            url = "https://github.com/{repo}/raw/master/README.md".format(repo = self.options['repo'])
+            markdown = requests.get(url).text
+            parsed_data = self.parseMarkdown(markdown)
+            self.redis.set(redis_key, json.dumps(parsed_data))
+            self.redis.expire(redis_key, 300) # cache for 5 minutes
+        else:
+            parsed_data = json.loads(json_parsed_data)
+
+        return parsed_data
 
     def execute(self, quals, columns):
-        url = "https://github.com/{repo}/raw/master/README.md".format(repo = self.options['repo'])
-        markdown = requests.get(url).text
-        parsed = self.parseMarkdown(markdown);
+        parsed = self.getParsedData()        
 
         for category, catList in parsed.items():
             for lib in catList:

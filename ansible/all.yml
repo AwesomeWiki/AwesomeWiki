@@ -7,6 +7,8 @@
       import_tasks: setup-postgres.yml
     - name: Setup PostgREST
       import_tasks: setup-postgrest.yml
+    - name: Setup Redis
+      import_tasks: setup-redis.yml
     - name: Install Sqitch
       import_tasks: install-sqitch.yml
     - name: Clone AwesomeWiki application

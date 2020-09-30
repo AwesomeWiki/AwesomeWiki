@@ -9,12 +9,13 @@
   apt:
     pkg:
     - python3-pip
-- name: Install libraries
+- name: Install python libraries
   become: yes
   pip:
     name:
       - setuptools
       - requests
+      - redis
 - name: Install AwesomeWiki FDWs
   become: yes
   command:

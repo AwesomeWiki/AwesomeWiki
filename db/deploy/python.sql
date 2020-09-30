@@ -3,7 +3,7 @@
 BEGIN;
 
 CREATE SERVER awesome_list FOREIGN DATA WRAPPER multicorn OPTIONS (
-    wrapper 'awesome.list.ForeignDataWrapper'
+    wrapper 'awesome.alist.ForeignDataWrapper'
 );
 
 CREATE FOREIGN TABLE api.awesome_python (
