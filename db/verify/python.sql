@@ -2,6 +2,6 @@
 
 BEGIN;
 
-SELECT pg_catalog.has_schema_privilege('api.awesome_python', 'usage');
+SELECT pg_catalog.has_table_privilege('api.awesome_python', 'select');
 
 ROLLBACK;

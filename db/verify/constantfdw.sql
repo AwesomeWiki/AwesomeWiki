@@ -2,6 +2,6 @@
 
 BEGIN;
 
-SELECT pg_catalog.has_schema_privilege('api.constant', 'usage');
+SELECT pg_catalog.has_table_privilege('api.constant', 'select');
 
 ROLLBACK;
