@@ -3,7 +3,7 @@
 BEGIN;
 
 CREATE SERVER awesome_constant FOREIGN DATA WRAPPER multicorn OPTIONS (
-    wrapper 'awesome.ConstantForeignDataWrapper'
+    wrapper 'awesome.constant.ForeignDataWrapper'
 );
 
 CREATE FOREIGN TABLE api.constant (
