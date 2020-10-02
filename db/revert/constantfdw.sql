@@ -2,8 +2,8 @@
 
 BEGIN;
 
-DROP FOREIGN TABLE api.constant;
+DROP FOREIGN TABLE IF EXISTS api.constant;
 
-DROP SERVER awesome_constant;
+DROP SERVER IF EXISTS awesome_constant;
 
 COMMIT;

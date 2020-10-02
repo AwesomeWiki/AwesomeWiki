@@ -16,6 +16,7 @@
       - setuptools
       - requests
       - redis
+      - python-slugify
 - name: Install AwesomeWiki FDWs
   become: yes
   command:

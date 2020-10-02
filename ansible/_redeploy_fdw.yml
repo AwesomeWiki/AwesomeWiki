@@ -1,0 +1,6 @@
+- hosts: sdc
+  tasks:
+    - name: Install AwesomeWiki FDWs
+      import_tasks: install-application-fdw.yml
+    - name: Provision Database
+      import_tasks: provision-db.yml

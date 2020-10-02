@@ -2,8 +2,10 @@
 
 BEGIN;
 
-DROP FOREIGN TABLE api.awesome_python;
+DROP FOREIGN TABLE IF EXISTS api.awesome_python_categories;
+DROP FOREIGN TABLE IF EXISTS api.awesome_python;
 
-DROP SERVER awesome_list;
+DROP SERVER IF EXISTS awesome_list_categories;
+DROP SERVER IF EXISTS awesome_list;
 
 COMMIT;
