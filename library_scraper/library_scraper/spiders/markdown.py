@@ -1,12 +1,19 @@
 import sys
-import scrapy
-from scrapy.crawler import CrawlerProcess
-from scrapy import signals
-from scrapy.utils.project import get_project_settings
 
-from scrapy.signalmanager import dispatcher
-from LibToInstallerMatching import QuotesSpider
+import requests
+from bs4 import BeautifulSoup
+import re
     
+def getPackageName(url):
+    response = requests.get(url).content
+    soup = BeautifulSoup(response, features="lxml")
+    text_of_soup = soup.get_text().strip() # turn html into text 
+    regex_results = re.search("pip install ([a-zA-Z\-]+)", text_of_soup)
+    if regex_results != None:
+        regex_results = regex_results.group()
+        print(regex_results) #TODO add support for multiple pip-like keywords 
+    return regex_results
+
 if __name__ == '__main__':
     
     file_path = "source_data/awesome-python-master-README.md"
@@ -42,21 +49,12 @@ if __name__ == '__main__':
 
     results = []
 
-    def crawler_results(signal, sender, item, response, spider):
-        if item != None:
-            results.append(item)
-
-    dispatcher.connect(crawler_results, signal=signals.item_passed)
-
-    process = CrawlerProcess(get_project_settings())
-
     for category in my_dict:
         for address in my_dict[category]:
             address = address[address.find('(')+1:-1]
             if address.find('http') != -1:
-                process.crawl(QuotesSpider, address)
+                results.append(getPackageName(address))
             print(address)
-    process.start() # the script will block here until the crawling is finished
 
     original_stdout = sys.stdout # Save a reference to the original standard output
 
@@ -69,3 +67,4 @@ if __name__ == '__main__':
             print(pip)
 
     sys.stdout = original_stdout
+
