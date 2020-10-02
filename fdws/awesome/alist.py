@@ -97,7 +97,7 @@ class ForeignDataWrapper(multicorn.ForeignDataWrapper):
         for category, catList in parsed.items():
             for lib in catList:
                 line = {}
-                line['category_name'] = category.strip()
+                line['category_slug'] = slugify(category.strip())
                 matches = re.match(r'^\[(.*)\]\((.*)\)$', lib)
                 if not matches:
                     continue
