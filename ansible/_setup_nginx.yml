@@ -1,0 +1,4 @@
+- hosts: sdc
+  tasks:
+    - name: Setup nginx
+      import_tasks: setup-nginx.yml
