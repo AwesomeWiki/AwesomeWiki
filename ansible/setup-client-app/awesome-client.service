@@ -9,6 +9,7 @@ Requires = network.target postgrest.service
 Type = simple
 WorkingDirectory = /var/AwesomeWiki/awesome-libs-2/server
 ExecStart = /usr/bin/npm run server
+Environment = "PORT=9000"
 Restart = on-failure
 RestartSec = 5s
 

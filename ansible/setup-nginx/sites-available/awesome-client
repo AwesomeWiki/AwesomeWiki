@@ -4,10 +4,10 @@ server {
 
     server_name _;
 
-    location /api/ {
-        rewrite ^/api/python/categories/?$ /api/awesome_python_categories last;
-        rewrite ^/api/python/([a-zA-Z\-]+)/?$ /api/awesome_python?category_slug=eq.$1 last;
-        rewrite ^/api/python/?$ /api/awesome_python last;
+    location /core/ {
+        rewrite ^/core/python/categories/?$ /core/awesome_python_categories last;
+        rewrite ^/core/python/([a-zA-Z\-]+)/?$ /core/awesome_python?category_slug=eq.$1 last;
+        rewrite ^/core/python/?$ /core/awesome_python last;
         proxy_pass http://localhost:3000/;
     }
 
@@ -15,6 +15,6 @@ server {
         sub_filter "http://localhost:8081/" "http://$host/";
         sub_filter_once off;
         sub_filter_types *;
-        proxy_pass http://localhost:8081;
+        proxy_pass http://localhost:9000;
     }
 }
