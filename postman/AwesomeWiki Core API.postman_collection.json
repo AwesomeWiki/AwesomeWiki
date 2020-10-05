@@ -1,0 +1,283 @@
+{
+	"info": {
+		"_postman_id": "756fcc42-1aec-4d2f-ae06-9ef416db0903",
+		"name": "AwesomeWiki Core API",
+		"description": "This collection tests the AwesomeWiki Core API.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "PythonCategories",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "96c5ea52-5942-43a5-bc93-0354bfbd9c6a",
+						"exec": [
+							"// https://community.postman.com/t/bypass-or-skip-tests-for-a-request/2704/4\r",
+							"let skipTest = false;\r",
+							"\r",
+							"// https://learning.postman.com/docs/writing-scripts/test-scripts/#writing-test-scripts\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response must be valid and have a JSON body\", function () {\r",
+							"    skipTest = true;\r",
+							"     pm.response.to.be.ok;\r",
+							"     pm.response.to.be.withBody;\r",
+							"     pm.response.to.be.json;\r",
+							"    skipTest = false;\r",
+							"});\r",
+							"\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response is a JSON array\", function() {\r",
+							"    skipTest = true;\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"    skipTest = false;\r",
+							"});\r",
+							"\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response contains 'Code Analysis' object\", function() {\r",
+							"    skipTest = true;\r",
+							"    pm.expect(pm.response.json()).to.deep.include({\r",
+							"        \"name\": \"Code Analysis\",\r",
+							"        \"slug\": \"code-analysis\"\r",
+							"    });\r",
+							"    skipTest = false;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{instance}}.{{root_host}}/api/python/categories",
+					"protocol": "http",
+					"host": [
+						"{{instance}}",
+						"{{root_host}}"
+					],
+					"path": [
+						"api",
+						"python",
+						"categories"
+					]
+				},
+				"description": "Returns the categories for Python, identified by the 'python' slug"
+			},
+			"response": []
+		},
+		{
+			"name": "PythonCategory1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "10b75f8a-e745-4de9-ae37-da8c09682e97",
+						"exec": [
+							"// https://community.postman.com/t/bypass-or-skip-tests-for-a-request/2704/4\r",
+							"let skipTest = false;\r",
+							"\r",
+							"// https://learning.postman.com/docs/writing-scripts/test-scripts/#writing-test-scripts\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response must be valid and have a JSON body\", function () {\r",
+							"    skipTest = true;\r",
+							"    pm.response.to.be.ok;\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    skipTest = false;\r",
+							"});\r",
+							"\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response is a JSON array\", function() {\r",
+							"    skipTest = true;\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"    skipTest = false;\r",
+							"});\r",
+							"\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response contains 'PyLint' object\", function() {\r",
+							"    skipTest = true;\r",
+							"    pm.expect(pm.response.json()).to.deep.include({\r",
+							"        \"name\": \"PyLint\",\r",
+							"        \"fqn\": \"pylint\",\r",
+							"        \"url\": \"https://www.pylint.org\"\r",
+							"    });\r",
+							"    skipTest = false;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{instance}}.{{root_host}}/api/python/category/code-analysis",
+					"protocol": "http",
+					"host": [
+						"{{instance}}",
+						"{{root_host}}"
+					],
+					"path": [
+						"api",
+						"python",
+						"category",
+						"code-analysis"
+					]
+				},
+				"description": "Returns the libraries for a Python in the Code Analysis category, identified by their slugs 'python' and 'code-analysis'."
+			},
+			"response": []
+		},
+		{
+			"name": "PythonLibrary1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "07ce7d98-7160-4b1f-9e93-60fa76aa4757",
+						"exec": [
+							"// https://community.postman.com/t/bypass-or-skip-tests-for-a-request/2704/4\r",
+							"let skipTest = false;\r",
+							"\r",
+							"// https://learning.postman.com/docs/writing-scripts/test-scripts/#writing-test-scripts\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response must be valid and have a JSON body\", function () {\r",
+							"    skipTest = true;\r",
+							"    pm.response.to.be.ok;\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    skipTest = false;\r",
+							"});\r",
+							"\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response is a JSON object\", function() {\r",
+							"    skipTest = true;\r",
+							"    pm.expect(pm.response.json()).to.be.an('object');\r",
+							"    skipTest = false;\r",
+							"});\r",
+							"\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response is 'PyLint' object\", function() {\r",
+							"    skipTest = true;\r",
+							"    pm.expect(pm.response.json()).to.deep.equal({\r",
+							"        \"name\": \"PyLint\",\r",
+							"        \"fqn\": \"pylint\",\r",
+							"        \"url\": \"https://www.pylint.org\"\r",
+							"    });\r",
+							"    skipTest = false;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{instance}}.{{root_host}}/api/python/pylint",
+					"protocol": "http",
+					"host": [
+						"{{instance}}",
+						"{{root_host}}"
+					],
+					"path": [
+						"api",
+						"python",
+						"pylint"
+					]
+				},
+				"description": "Returns the information about PyLint, identified by its Fully Qualified Name (FQN) of 'pylint'."
+			},
+			"response": []
+		},
+		{
+			"name": "LanguageEndpoint",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "b1bf7279-4983-407c-abf6-7018d91f7466",
+						"exec": [
+							"// https://community.postman.com/t/bypass-or-skip-tests-for-a-request/2704/4\r",
+							"let skipTest = false;\r",
+							"\r",
+							"// https://learning.postman.com/docs/writing-scripts/test-scripts/#writing-test-scripts\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response must be valid and have a JSON body\", function () {\r",
+							"    skipTest = true;\r",
+							"    pm.expect(response).to.be.ok;\r",
+							"    pm.expect(response).to.be.withBody;\r",
+							"    pm.expect(response).to.be.json;\r",
+							"    skipTest = false;\r",
+							"});\r",
+							"\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response is a JSON array\", function() {\r",
+							"    skipTest = true;\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"    skipTest = false;\r",
+							"});\r",
+							"\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response contains 'Python' object\", function() {\r",
+							"    skipTest = true;\r",
+							"    pm.expect(pm.response.json()).to.deep.equal({\r",
+							"        \"name\": \"Python\",\r",
+							"        \"slug\": \"python\"\r",
+							"    });\r",
+							"    skipTest = false;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{instance}}.{{root_host}}/api/languages",
+					"protocol": "http",
+					"host": [
+						"{{instance}}",
+						"{{root_host}}"
+					],
+					"path": [
+						"api",
+						"languages"
+					]
+				},
+				"description": "Returns the lsit of languages supported."
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "a1261fce-0923-47eb-a9b9-fc49dcf163cd",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d9339ba6-327e-44de-89dd-af20b434efb7",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "5b6ae579-f7f9-4c99-950e-12ed19b79f90",
+			"key": "instance",
+			"value": ""
+		},
+		{
+			"id": "87dcb39d-7b86-446c-94d7-f668149096ad",
+			"key": "root_host",
+			"value": "dev.libraries.wiki"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
