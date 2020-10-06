@@ -49,14 +49,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{instance}}.{{root_host}}/api/python/categories",
+					"raw": "http://{{instance}}.{{root_host}}/core/python/categories",
 					"protocol": "http",
 					"host": [
 						"{{instance}}",
 						"{{root_host}}"
 					],
 					"path": [
-						"api",
+						"core",
 						"python",
 						"categories"
 					]
@@ -109,14 +109,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{instance}}.{{root_host}}/api/python/category/code-analysis",
+					"raw": "http://{{instance}}.{{root_host}}/core/python/category/code-analysis",
 					"protocol": "http",
 					"host": [
 						"{{instance}}",
 						"{{root_host}}"
 					],
 					"path": [
-						"api",
+						"core",
 						"python",
 						"category",
 						"code-analysis"
@@ -170,14 +170,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{instance}}.{{root_host}}/api/python/pylint",
+					"raw": "http://{{instance}}.{{root_host}}/core/python/pylint",
 					"protocol": "http",
 					"host": [
 						"{{instance}}",
 						"{{root_host}}"
 					],
 					"path": [
-						"api",
+						"core",
 						"python",
 						"pylint"
 					]
@@ -229,14 +229,14 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{instance}}.{{root_host}}/api/languages",
+					"raw": "http://{{instance}}.{{root_host}}/core/languages",
 					"protocol": "http",
 					"host": [
 						"{{instance}}",
 						"{{root_host}}"
 					],
 					"path": [
-						"api",
+						"core",
 						"languages"
 					]
 				},
@@ -269,12 +269,12 @@
 	],
 	"variable": [
 		{
-			"id": "5b6ae579-f7f9-4c99-950e-12ed19b79f90",
+			"id": "ba3b485d-804f-4d5f-9d50-fd0d3e0c06bd",
 			"key": "instance",
 			"value": ""
 		},
 		{
-			"id": "87dcb39d-7b86-446c-94d7-f668149096ad",
+			"id": "5f628bc6-13f1-43d0-9f39-4a97fa211d44",
 			"key": "root_host",
 			"value": "dev.libraries.wiki"
 		}
