@@ -155,9 +155,10 @@
 							"(skipTest ? pm.test.skip : pm.test)(\"Response is 'PyLint' object\", function() {\r",
 							"    skipTest = true;\r",
 							"    pm.expect(pm.response.json()).to.deep.equal({\r",
-							"        \"name\": \"PyLint\",\r",
+							"        \"category_slug\": \"code-analysis\",\r",
+							"        \"name\": \"pylint\",\r",
 							"        \"fqn\": \"pylint\",\r",
-							"        \"url\": \"https://www.pylint.org\"\r",
+							"        \"url\": \"https://www.pylint.org/\"\r",
 							"    });\r",
 							"    skipTest = false;\r",
 							"});"
@@ -269,12 +270,12 @@
 	],
 	"variable": [
 		{
-			"id": "d3600c56-a4c0-4679-a655-bad7867bbe6b",
+			"id": "5d6d0828-bccb-4723-baee-928d2ec76270",
 			"key": "instance",
 			"value": ""
 		},
 		{
-			"id": "02a6ee6e-5d29-4747-9673-7e3dae3bb1c0",
+			"id": "7d852bd7-3fb0-46d6-8c73-c0b644ae653d",
 			"key": "root_host",
 			"value": "dev.libraries.wiki"
 		}
