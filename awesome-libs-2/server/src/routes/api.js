@@ -7,22 +7,23 @@ const axios = require('axios');
 /* GET api listing. */
 router.get('/', (req, res) => {
 
-	res.send('/ endpoint hit');
+  res.send('/ endpoint hit');
 	
 });
 
 // Get all languages
 router.get('/languages', (req,res) => {
 
-	// Mock api call
-  axios.get('http://localhost:8081/languages.json')
+  var test_url = 'http://localhost:8081/languages.json';
+  var url      = 'http://localhost/core/languages';
+
+  axios.get(test_url)
     .then(languages => {
       res.status(200).json(languages.data);
     })
     .catch(error => {
       res.status(500).send(error)
   });
-	// End mock api call
 
 });
 
@@ -31,15 +32,16 @@ router.get('/:language/categories', (req, res) => {
 
   var language = req.params.language;
 
-  // Mock api call
-  axios.get('http://localhost:8081/' + language + '.json')
+  var test_url = 'http://localhost:8081/' + language + '.json';
+  var url      = 'http://localhost/core/' + language + '/categories';
+  
+  axios.get(url)
     .then(categories => {
       res.status(200).json(categories.data);
     })
     .catch(error => {
       res.status(500).send(error)
   });
-	// End mock api call
 
 });
 
