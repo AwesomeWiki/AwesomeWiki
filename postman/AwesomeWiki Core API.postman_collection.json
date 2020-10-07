@@ -94,9 +94,9 @@
 							"(skipTest ? pm.test.skip : pm.test)(\"Response contains 'PyLint' object\", function() {\r",
 							"    skipTest = true;\r",
 							"    pm.expect(pm.response.json()).to.deep.include({\r",
-							"        \"name\": \"PyLint\",\r",
+							"        \"name\": \"pylint\",\r",
 							"        \"fqn\": \"pylint\",\r",
-							"        \"url\": \"https://www.pylint.org\"\r",
+							"        \"url\": \"https://www.pylint.org/\"\r",
 							"    });\r",
 							"    skipTest = false;\r",
 							"});"
@@ -200,9 +200,9 @@
 							"// https://learning.postman.com/docs/writing-scripts/test-scripts/#writing-test-scripts\r",
 							"(skipTest ? pm.test.skip : pm.test)(\"Response must be valid and have a JSON body\", function () {\r",
 							"    skipTest = true;\r",
-							"    pm.expect(response).to.be.ok;\r",
-							"    pm.expect(response).to.be.withBody;\r",
-							"    pm.expect(response).to.be.json;\r",
+							"    pm.expect(pm.response).to.be.ok;\r",
+							"    pm.expect(pm.response).to.be.withBody;\r",
+							"    pm.expect(pm.response).to.be.json;\r",
 							"    skipTest = false;\r",
 							"});\r",
 							"\r",
@@ -214,7 +214,7 @@
 							"\r",
 							"(skipTest ? pm.test.skip : pm.test)(\"Response contains 'Python' object\", function() {\r",
 							"    skipTest = true;\r",
-							"    pm.expect(pm.response.json()).to.deep.equal({\r",
+							"    pm.expect(pm.response.json()).to.deep.include({\r",
 							"        \"name\": \"Python\",\r",
 							"        \"slug\": \"python\"\r",
 							"    });\r",
@@ -269,12 +269,12 @@
 	],
 	"variable": [
 		{
-			"id": "ba3b485d-804f-4d5f-9d50-fd0d3e0c06bd",
+			"id": "d3600c56-a4c0-4679-a655-bad7867bbe6b",
 			"key": "instance",
 			"value": ""
 		},
 		{
-			"id": "5f628bc6-13f1-43d0-9f39-4a97fa211d44",
+			"id": "02a6ee6e-5d29-4747-9673-7e3dae3bb1c0",
 			"key": "root_host",
 			"value": "dev.libraries.wiki"
 		}

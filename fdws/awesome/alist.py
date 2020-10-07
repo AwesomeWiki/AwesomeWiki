@@ -103,6 +103,7 @@ class ForeignDataWrapper(multicorn.ForeignDataWrapper):
                     continue
                 libName, url = matches.groups()
                 line['name'] = libName
+                line['fqn'] = slugify(libName)
                 line['url'] = url
                 yield line
     

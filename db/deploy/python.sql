@@ -13,6 +13,7 @@ CREATE SERVER awesome_list_categories FOREIGN DATA WRAPPER multicorn OPTIONS (
 CREATE FOREIGN TABLE api.awesome_python (
     "category_slug" CHARACTER VARYING,
     "name" CHARACTER VARYING,
+    "fqn" CHARACTER VARYING,
     "url" CHARACTER VARYING
 ) SERVER awesome_list OPTIONS (
     repo 'vinta/awesome-python'
