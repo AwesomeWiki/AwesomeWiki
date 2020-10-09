@@ -7,7 +7,7 @@ const axios = require('axios');
 /* GET api listing. */
 router.get('/', (req, res) => {
 
-  res.send('/ endpoint hit');
+  res.send('api works');
 	
 });
 
@@ -17,7 +17,7 @@ router.get('/languages', (req,res) => {
   var test_url = 'http://localhost:8081/languages.json';
   var url      = 'http://localhost/core/languages';
 
-  axios.get(test_url)
+  axios.get(url)
     .then(languages => {
       res.status(200).json(languages.data);
     })
@@ -49,10 +49,13 @@ router.get('/:language/categories', (req, res) => {
 router.get('/:language/:category/libraries', (req,res) => {
 
 	var language = req.params.language;
-	var category = req.params.category;
+  var category = req.params.category;
+  
+  var test_url = 'http://localhost:8081/' + category + '.json';
+  var url = 'http://localhost/core/' + language + '/category/' + category;
 
   // Mock api call
-  axios.get('http://localhost:8081/' + category + '.json')
+  axios.get(url)
     .then(cat => {
       res.status(200).json(cat.data);
     })
@@ -68,10 +71,13 @@ router.get('/:language/:category/:library', (req,res) => {
 
 	var language = req.params.language;
 	var category = req.params.category;
-	var library  = req.params.library;
+  var library  = req.params.library;
+  
+  var test_url = 'http://localhost:8081/' + library + '.json';
+  var url = 'http://localhost/core/' + language + '/' + library;
 
   // Mock api call
-  axios.get('http://localhost:8081/' + library + '.json')
+  axios.get(url)
     .then(lib => {
       res.status(200).json(lib.data);
     })
