@@ -3,10 +3,19 @@ server {
     listen [::]:80 default_server;
 
     server_name _;
+    # error_log /var/log/nginx/awesome-client.error.log debug;
+    # rewrite_log on;
+
+    location /core/single/ {
+        proxy_set_header "Accept" "application/vnd.pgrst.object+json";
+        # rewrite ^/core/single/(.*)/?$ /core/$1 last;
+        proxy_pass http://localhost/core/;
+    }
 
     location /core/ {
         rewrite ^/core/python/categories/?$ /core/awesome_python_categories last;
-        rewrite ^/core/python/([a-zA-Z\-]+)/?$ /core/awesome_python?category_slug=eq.$1 last;
+        rewrite ^/core/python/category/([a-zA-Z\-]+)/?$ /core/awesome_python?select=name,fqn,url&category_slug=eq.$1 last;
+        rewrite ^/core/python/([a-zA-Z\-]+)/?$ /core/single/awesome_python?fqn=eq.$1 last;
         rewrite ^/core/python/?$ /core/awesome_python last;
         proxy_pass http://localhost:3000/;
     }
