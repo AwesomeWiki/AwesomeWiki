@@ -1,0 +1,22 @@
+diff --git a/db/verify/python.sql b/db/verify/python.sql
+index fb2c668..3945d3f 100644
+--- a/db/verify/python.sql
++++ b/db/verify/python.sql
+@@ -1,7 +1,17 @@
+ -- Verify awesome:python on pg
+ 
++
++DO $$
++DECLARE
++    	category varchar,
++        name varchar,
++	url varchar;
++        
++
+ BEGIN;
+ 
+ SELECT pg_catalog.has_table_privilege('api.awesome_python', 'select');
+ 
++
++
+ ROLLBACK;
