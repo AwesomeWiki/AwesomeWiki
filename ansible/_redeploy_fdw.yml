@@ -4,3 +4,13 @@
       import_tasks: install-application-fdw.yml
     - name: Provision Database
       import_tasks: provision-db.yml
+    - name: Restart PostgreSQL
+      become: yes
+      service:
+        name: postgresql
+        state: restarted
+    - name: Restart PostgREST
+      become: yes
+      service:
+        name: postgrest
+        state: restarted
