@@ -34,7 +34,8 @@ CREATE FOREIGN TABLE IF NOT EXISTS api.python_package (
     "category_slug" CHARACTER VARYING,
     "name" CHARACTER VARYING,
     "fqn" CHARACTER VARYING,
-    "url" CHARACTER VARYING
+    "url" CHARACTER VARYING,
+    "info" JSON 
 ) SERVER python_package OPTIONS (
     repo 'vinta/awesome-python'
 );

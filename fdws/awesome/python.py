@@ -2,8 +2,18 @@ import multicorn
 import redis
 import requests, re, json, sys
 from slugify import slugify
-
+import urllib.request
 from .alist import getAllParsedData
+
+#Cite from https://www.powercms.in/blog/how-get-json-data-remote-url-python-script with some modifications
+def findPackageFromPyPi(package):
+    url = 'https://pypi.python.org/pypi/' + package + '/json'
+    response = urllib.request.urlopen(url)
+    result = json.loads(response.read())
+    result.pop('urls')
+    result.pop('last_serial')
+    info = json.dumps(result)
+    return info
 
 class Package(multicorn.ForeignDataWrapper):
     def __init__(self, options, columns):
@@ -42,13 +52,18 @@ class Package(multicorn.ForeignDataWrapper):
 
                 if fqn != fqn_name:
                     continue
-
+                
                 line['category_slug'] = slugify(category.strip())
                 line['name'] = libName
                 line['fqn'] = slugify(libName)
                 line['url'] = url
+                temp = findPackageFromPyPi(fqn)
+                # with open('/tmp/awesome_py_log', 'w') as f:
+                #     print(temp, file=f)
+                line['info'] = temp
 
                 break
             if 'name' in line: break
         
+
         yield line
