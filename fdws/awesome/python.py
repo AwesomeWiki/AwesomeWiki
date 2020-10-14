@@ -57,7 +57,10 @@ class Package(multicorn.ForeignDataWrapper):
                 line['name'] = libName
                 line['fqn'] = slugify(libName)
                 line['url'] = url
-                line['info'] = findPackageFromPyPi(fqn)
+                temp = findPackageFromPyPi(fqn)
+                # with open('/tmp/awesome_py_log', 'w') as f:
+                #     print(temp, file=f)
+                line['info'] = temp
 
                 break
             if 'name' in line: break
