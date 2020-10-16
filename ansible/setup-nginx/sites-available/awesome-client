@@ -15,6 +15,7 @@ server {
     location /core/ {
         rewrite ^/core/python/categories/?$ /core/awesome_python_categories last;
         rewrite ^/core/python/category/([a-zA-Z\-]+)/?$ /core/awesome_python?select=name,fqn,url&category_slug=eq.$1 last;
+        rewrite ^/core/python/([a-zA-Z\-]+)/articles/?$ /core/articles?select=title,url&fqn=eq.$1&language=eq.python last;
         rewrite ^/core/python/([a-zA-Z\-]+)/?$ /core/single/python_package?fqn=eq.$1 last;
         rewrite ^/core/python/?$ /core/awesome_python last;
         proxy_pass http://localhost:3000/;
