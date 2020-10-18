@@ -44,7 +44,8 @@ class Package(multicorn.ForeignDataWrapper):
 
         for category, catList in categories.items():
             for library in catList:
-                matches = re.match(r'^\[(.*)\]\((.*)\)$', library)
+                names = str(library[0])
+                matches = re.match(r'^\[(.*)\]\((.*)\)$', names)
                 if not matches:
                     continue
                 libName, url = matches.groups()
