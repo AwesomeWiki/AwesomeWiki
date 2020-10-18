@@ -22,7 +22,7 @@
 
       <v-layout wrap align-center>
         <v-flex xs12 sm6 d-flex>
-          <v-select v-model="selectedItem" :items="languages" item-text="title" label="Select a language" persistent-hint return-object single-line></v-select>
+          <v-select v-model="selectedItem" :items="languages" item-text="name" label="Select a language" persistent-hint return-object single-line></v-select>
         </v-flex>
         <v-btn rounded block color="blue darken-3" dark large @click="selectLanguage()">CONTINUE</v-btn>
       </v-layout>
@@ -54,7 +54,7 @@
         this.languages = response.data;
       },
       selectLanguage() {
-        this.$router.push('/' + this.selectedItem.title + '/categories');
+        this.$router.push('/' + this.selectedItem.slug + '/categories');
       }
     },
     mounted() {

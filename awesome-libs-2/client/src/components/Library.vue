@@ -3,7 +3,7 @@
 		<div>Language selected: {{this.$route.params.language}}<br> 
          Category selected: {{ this.$route.params.category}}<br>
          Library selected: {{ this.$route.params.library }}<br>
-         {{ this.info.description }}</div>
+         {{ this.library_info.url}}</div>
 	</v-container>
 </template>
 
@@ -12,14 +12,12 @@
   export default {
     name: 'Library',
     data: () => ({
-      info: {
-        description: null
-      },
+      library_info : null
     }),
     methods: {
       async getLibInfo(language, category, library) {
         const response = await (LibsService.getLibInfo(language, category, library));
-        this.info.description = response.data.desc;
+        this.library_info = response.data;
       }
     },
     mounted() {

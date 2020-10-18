@@ -154,7 +154,9 @@
 							"\r",
 							"(skipTest ? pm.test.skip : pm.test)(\"Response is 'PyLint' object\", function() {\r",
 							"    skipTest = true;\r",
-							"    pm.expect(pm.response.json()).to.deep.equal({\r",
+							"    response = pm.response.json();\r",
+							"    delete response['info'];\r",
+							"    pm.expect(response).to.deep.equal({\r",
 							"        \"category_slug\": \"code-analysis\",\r",
 							"        \"name\": \"pylint\",\r",
 							"        \"fqn\": \"pylint\",\r",
@@ -244,6 +246,65 @@
 				"description": "Returns the lsit of languages supported."
 			},
 			"response": []
+		},
+		{
+			"name": "PythonLibrary1Articles",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "07ce7d98-7160-4b1f-9e93-60fa76aa4757",
+						"exec": [
+							"// https://community.postman.com/t/bypass-or-skip-tests-for-a-request/2704/4\r",
+							"let skipTest = false;\r",
+							"\r",
+							"// https://learning.postman.com/docs/writing-scripts/test-scripts/#writing-test-scripts\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response must be valid and have a JSON body\", function () {\r",
+							"    skipTest = true;\r",
+							"    pm.response.to.be.ok;\r",
+							"    pm.response.to.be.withBody;\r",
+							"    pm.response.to.be.json;\r",
+							"    skipTest = false;\r",
+							"});\r",
+							"\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response is a JSON array\", function() {\r",
+							"    skipTest = true;\r",
+							"    pm.expect(pm.response.json()).to.be.an('array');\r",
+							"    skipTest = false;\r",
+							"});\r",
+							"\r",
+							"(skipTest ? pm.test.skip : pm.test)(\"Response contains PythonLibrary.org article object\", function() {\r",
+							"    skipTest = true;\r",
+							"    pm.expect(pm.response.json()).to.deep.include({\r",
+							"        \"title\": \"PyLint: Analyzing Python Code\",\r",
+							"        \"url\": \"http://www.blog.pythonlibrary.org/2012/06/12/pylint-analyzing-python-code/\"\r",
+							"    });\r",
+							"    skipTest = false;\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{instance}}.{{root_host}}/core/python/pylint/articles",
+					"protocol": "http",
+					"host": [
+						"{{instance}}",
+						"{{root_host}}"
+					],
+					"path": [
+						"core",
+						"python",
+						"pylint",
+						"articles"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -270,12 +331,12 @@
 	],
 	"variable": [
 		{
-			"id": "5d6d0828-bccb-4723-baee-928d2ec76270",
+			"id": "e5e5c634-ba02-410d-b81a-49efc0c52bfc",
 			"key": "instance",
 			"value": ""
 		},
 		{
-			"id": "7d852bd7-3fb0-46d6-8c73-c0b644ae653d",
+			"id": "68ff8d69-95ac-465b-ac9f-5af55f556022",
 			"key": "root_host",
 			"value": "dev.libraries.wiki"
 		}

@@ -37,6 +37,7 @@
       </v-btn>
     </v-app-bar>
 
+    <!-- Where routed views are rendered -->
     <v-main>
       <router-view></router-view>
     </v-main>
