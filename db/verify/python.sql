@@ -99,7 +99,7 @@ BEGIN
    author := (SELECT info -> 'info' ->> 'author' AS author  from api.python_package where fqn = 'pylint');
    ASSERT author = 'Python Code Quality Authority';
    author_email := (SELECT info -> 'info' ->> 'author_email' AS author  from api.python_package where fqn = 'pylint');
-   ASSERT author = 'code-quality@python.org';
+   ASSERT author_email = 'code-quality@python.org';
 END $$;
 
 ROLLBACK;
