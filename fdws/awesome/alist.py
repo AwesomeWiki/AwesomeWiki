@@ -30,7 +30,14 @@ def parseMarkdown(markdown):
             list1.append(new_string)
         elif len(words) >= 3:
             if words[1].startswith('[') and process:
-                values.append(words[1])
+                temp = []
+                temp.append(words[1])
+                words.remove(words[2])
+                words.remove(words[1])
+                words.remove(words[0])
+                des = ''.join([str(word) + " " for word in words])
+                temp.append(des)
+                values.append(temp)
     newList = tuple(values)
     my_dict[key] = newList
 
@@ -98,13 +105,15 @@ class ForeignDataWrapper(multicorn.ForeignDataWrapper):
             for lib in catList:
                 line = {}
                 line['category_slug'] = slugify(category.strip())
-                matches = re.match(r'^\[(.*)\]\((.*)\)$', lib)
+                names = str(lib[0])
+                matches = re.match(r'^\[(.*)\]\((.*)\)$', names)
                 if not matches:
                     continue
                 libName, url = matches.groups()
                 line['name'] = libName
                 line['fqn'] = slugify(libName)
                 line['url'] = url
+                line['description'] = str(lib[1])
                 yield line
     
     
