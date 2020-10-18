@@ -60,7 +60,7 @@ BEGIN
 END $$;
 
 
-SELECT pg_catalog.has_table_privilege('api.python_package', 'select');
+SELECT pg_catalog.has_table_privilege('api.awesome_python', 'select');
 
 SELECT pg_catalog.has_table_privilege('api.python_package', 'select');
 
@@ -97,4 +97,3 @@ BEGIN
 END $$;
 
 ROLLBACK;
-
