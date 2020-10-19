@@ -4,7 +4,7 @@ import requests, re, json, sys
 from slugify import slugify
 import urllib.request
 from .alist import getAllParsedData
-from ...library_scraper import getPackageName
+from ...library_scraper.markdown import getPackageName
 
 
 
