@@ -44,7 +44,8 @@ class Package(multicorn.ForeignDataWrapper):
 
         for category, catList in categories.items():
             for library in catList:
-                matches = re.match(r'^\[(.*)\]\((.*)\)$', library)
+                names = str(library[0])
+                matches = re.match(r'^\[(.*)\]\((.*)\)$', names)
                 if not matches:
                     continue
                 libName, url = matches.groups()
@@ -60,7 +61,7 @@ class Package(multicorn.ForeignDataWrapper):
                 temp = findPackageFromPyPi(fqn)
                 # with open('/tmp/awesome_py_log', 'w') as f:
                 #     print(temp, file=f)
-                line['info'] = temp
+                line['metadata'] = temp
 
                 break
             if 'name' in line: break

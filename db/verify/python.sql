@@ -4,8 +4,6 @@ BEGIN;
 
 SELECT pg_catalog.has_table_privilege('api.awesome_python', 'select');
 
-SELECT pg_catalog.has_table_privilege('api.awesome_python_categories', 'select');
-
 SELECT category_slug from api.awesome_python;
 
 SELECT name from api.awesome_python;
@@ -13,10 +11,6 @@ SELECT name from api.awesome_python;
 SELECT fqn from api.awesome_python;
 
 SELECT url from api.awesome_python;
-
-SELECT name from api.awesome_python_categories;
-
-SELECT slug from api.awesome_python_categories;
 
 
 DO $$
@@ -48,6 +42,12 @@ BEGIN
 END $$;
 
 
+SELECT pg_catalog.has_table_privilege('api.awesome_python_categories', 'select');
+
+SELECT name from api.awesome_python_categories;
+
+SELECT slug from api.awesome_python_categories;
+
 DO $$
 DECLARE
     n varchar;
@@ -57,6 +57,35 @@ BEGIN
    ASSERT n = 'Admin Panels';
    s := (SELECT slug FROM api.awesome_python_categories WHERE name = 'Built-in Classes Enhancement');
    ASSERT s = 'built-in-classes-enhancement';
+END $$;
+
+
+
+SELECT pg_catalog.has_table_privilege('api.python_package', 'select');
+
+
+DO $$
+DECLARE
+    n varchar;
+    u varchar;
+    s varchar;
+    author varchar;
+    author_email varchar;
+BEGIN
+   n := (SELECT name from api.python_package where fqn = 'ajenti');
+   ASSERT n = 'ajenti';
+   u := (SELECT url FROM api.python_package WHERE fqn = 'trio');
+   ASSERT u = 'https://github.com/python-trio/trio';
+   s := (SELECT category_slug FROM api.python_package WHERE fqn = 'authlib');
+   ASSERT s = 'authentication';
+   n := (SELECT name FROM api.python_package WHERE fqn  = 'feincms' AND url = 'https://github.com/feincms/feincms');
+   ASSERT n = 'feincms';
+   u := (SELECT url FROM api.python_package WHERE fqn = 'django-cache-machine' AND category_slug = 'caching');
+   ASSERT u = 'https://github.com/django-cache-machine/django-cache-machine';
+   author := (SELECT metadata -> 'info' ->> 'author' AS author  from api.python_package where fqn = 'pylint');
+   ASSERT author = 'Python Code Quality Authority';
+   author_email := (SELECT metadata  -> 'info' ->> 'author_email' AS author  from api.python_package where fqn = 'pylint');
+   ASSERT author_email = 'code-quality@python.org';
 END $$;
 
 ROLLBACK;
