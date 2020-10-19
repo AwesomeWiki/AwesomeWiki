@@ -69,11 +69,11 @@ class Package(multicorn.ForeignDataWrapper):
                 line['name'] = libName
                 line['fqn'] = slugify(libName)
                 line['url'] = url
-                temp = findPackageFromPyPi(fqn)
-                if temp is None:
-                    temp = getPackageName(url)
-                    temp = findPackageFromPyPi(temp)
-                line['metadata'] = temp
+                package_info = findPackageFromPyPi(fqn)
+                if package_info is None:
+                    package_info = getPackageName(url)
+                    package_info = findPackageFromPyPi(package_info)
+                line['metadata'] = package_info
 
                 break
             if 'name' in line: break
