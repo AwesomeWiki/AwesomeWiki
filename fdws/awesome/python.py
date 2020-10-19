@@ -4,15 +4,19 @@ import requests, re, json, sys
 from slugify import slugify
 import urllib.request
 from .alist import getAllParsedData
+from library_scraper/markdown.py import getPackageName
 
 #Cite from https://www.powercms.in/blog/how-get-json-data-remote-url-python-script with some modifications
 def findPackageFromPyPi(package):
-    url = 'https://pypi.python.org/pypi/' + package + '/json'
-    response = urllib.request.urlopen(url)
-    result = json.loads(response.read())
-    result.pop('urls')
-    result.pop('last_serial')
-    info = json.dumps(result)
+    try:
+        url = 'https://pypi.python.org/pypi/' + package + '/json'
+        response = urllib.request.urlopen(url)
+        result = json.loads(response.read())
+        result.pop('urls')
+        result.pop('last_serial')
+        info = json.dumps(result)
+    except:
+        return None
     return info
 
 class Package(multicorn.ForeignDataWrapper):
@@ -59,8 +63,9 @@ class Package(multicorn.ForeignDataWrapper):
                 line['fqn'] = slugify(libName)
                 line['url'] = url
                 temp = findPackageFromPyPi(fqn)
-                # with open('/tmp/awesome_py_log', 'w') as f:
-                #     print(temp, file=f)
+                if temp is None:
+                    temp = getPackageName(url)
+                    temp = findPackageFromPyPi(temp)
                 line['metadata'] = temp
 
                 break
