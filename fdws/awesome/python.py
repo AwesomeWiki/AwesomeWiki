@@ -61,7 +61,7 @@ class Package(multicorn.ForeignDataWrapper):
                 temp = findPackageFromPyPi(fqn)
                 # with open('/tmp/awesome_py_log', 'w') as f:
                 #     print(temp, file=f)
-                line['info'] = temp
+                line['metadata'] = temp
 
                 break
             if 'name' in line: break

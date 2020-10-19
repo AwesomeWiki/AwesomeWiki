@@ -36,7 +36,7 @@ CREATE FOREIGN TABLE IF NOT EXISTS api.python_package (
     "name" CHARACTER VARYING,
     "fqn" CHARACTER VARYING,
     "url" CHARACTER VARYING,
-    "info" JSON 
+    "metadata" JSON 
 ) SERVER python_package OPTIONS (
     repo 'vinta/awesome-python'
 );
