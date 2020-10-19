@@ -4,7 +4,13 @@ import requests, re, json, sys
 from slugify import slugify
 import urllib.request
 from .alist import getAllParsedData
-from library_scraper/markdown.py import getPackageName
+# from library_scraper/markdown.py import getPackageName
+# import importlib.machinery
+import sys
+sys.path.insert(0, '/var/AwesomeWiki/library_scraper')
+from markdown import getPackageName
+
+
 
 #Cite from https://www.powercms.in/blog/how-get-json-data-remote-url-python-script with some modifications
 def findPackageFromPyPi(package):
@@ -25,6 +31,7 @@ class Package(multicorn.ForeignDataWrapper):
         self.columns = columns
         self.options = options
         self.redis = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
+
     
     def execute(self, quals, columns):
         # quals is an array of multicorn.Qual
