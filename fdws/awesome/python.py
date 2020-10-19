@@ -4,8 +4,9 @@ import requests, re, json, sys
 from slugify import slugify
 import urllib.request
 from .alist import getAllParsedData
-from ...library_scraper.markdown import getPackageName
-
+import sys
+sys.path.insert(0, '/var/AwesomeWiki/library_scraper')
+from markdown import getPackageName
 
 
 #Cite from https://www.powercms.in/blog/how-get-json-data-remote-url-python-script with some modifications
