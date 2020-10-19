@@ -4,15 +4,22 @@ import requests, re, json, sys
 from slugify import slugify
 import urllib.request
 from .alist import getAllParsedData
+import sys
+sys.path.insert(0, '/var/AwesomeWiki/library_scraper')
+from markdown import getPackageName
+
 
 #Cite from https://www.powercms.in/blog/how-get-json-data-remote-url-python-script with some modifications
 def findPackageFromPyPi(package):
-    url = 'https://pypi.python.org/pypi/' + package + '/json'
-    response = urllib.request.urlopen(url)
-    result = json.loads(response.read())
-    result.pop('urls')
-    result.pop('last_serial')
-    info = json.dumps(result)
+    try:
+        url = 'https://pypi.python.org/pypi/' + package + '/json'
+        response = urllib.request.urlopen(url)
+        result = json.loads(response.read())
+        result.pop('urls')
+        result.pop('last_serial')
+        info = json.dumps(result)
+    except:
+        return None
     return info
 
 class Package(multicorn.ForeignDataWrapper):
@@ -21,6 +28,7 @@ class Package(multicorn.ForeignDataWrapper):
         self.columns = columns
         self.options = options
         self.redis = redis.Redis(host='localhost', port=6379, db=0, decode_responses=True)
+
     
     def execute(self, quals, columns):
         # quals is an array of multicorn.Qual
@@ -58,10 +66,11 @@ class Package(multicorn.ForeignDataWrapper):
                 line['name'] = libName
                 line['fqn'] = slugify(libName)
                 line['url'] = url
-                temp = findPackageFromPyPi(fqn)
-                # with open('/tmp/awesome_py_log', 'w') as f:
-                #     print(temp, file=f)
-                line['metadata'] = temp
+                package_info = findPackageFromPyPi(fqn)
+                if package_info is None:
+                    package_info = getPackageName(url)
+                    package_info = findPackageFromPyPi(package_info)
+                line['metadata'] = package_info
 
                 break
             if 'name' in line: break
