@@ -4,11 +4,7 @@ import requests, re, json, sys
 from slugify import slugify
 import urllib.request
 from .alist import getAllParsedData
-# from library_scraper/markdown.py import getPackageName
-# import importlib.machinery
-import sys
-sys.path.insert(0, '/var/AwesomeWiki/library_scraper')
-from markdown import getPackageName
+from ...library_scraper import getPackageName
 
 
 
