@@ -155,7 +155,7 @@
 							"(skipTest ? pm.test.skip : pm.test)(\"Response is 'PyLint' object\", function() {\r",
 							"    skipTest = true;\r",
 							"    response = pm.response.json();\r",
-							"    delete response['info'];\r",
+							"    delete response['metadata'];\r",
 							"    pm.expect(response).to.deep.equal({\r",
 							"        \"category_slug\": \"code-analysis\",\r",
 							"        \"name\": \"pylint\",\r",
