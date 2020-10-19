@@ -63,14 +63,6 @@ END $$;
 
 SELECT pg_catalog.has_table_privilege('api.python_package', 'select');
 
-SELECT category_slug from api.python_package;
-
-SELECT metadata from api.python_package;
-
-SELECT fqn from api.python_package;
-
-SELECT url from api.python_package;
-
 
 DO $$
 DECLARE
