@@ -24,7 +24,7 @@
 
 					<v-row class="justify-center">
 						<img
-							:src="lib.imageURL"
+							src="../assets/lib_placeholder.png"
 							alt="Placeholder"
 						>
 					</v-row>
@@ -61,7 +61,7 @@
 
 					<v-card-text>
 						<div class="my-4 subtitle-1">
-							<a :href="lib.url">github</a>
+							<a :href="lib.url">{{getURLLabel(lib.url)}}</a>
 						</div>
 					</v-card-text>					
 
@@ -69,7 +69,7 @@
               			align="center"
               			justify="center"
             		>
-						<v-btn>Show more</v-btn>
+						<v-btn @click="selectLibrary(lib)">Show more</v-btn>
 					</v-row>
           		</v-card>
         	</v-col>
@@ -98,8 +98,8 @@
 			selectedLibrary: null
     }),
     methods: {
-			selectCategory() {
-				this.$router.push('/' + this.$route.params.language + '/' + this.$route.params.category + '/' + this.selectedLibrary.fqn);
+			selectLibrary(lib) {
+				this.$router.push('/' + this.$route.params.language + '/' + this.$route.params.category + '/' + lib.fqn);
 			},
 			async getLibraries(language, category) {
 				const response = await LibsService.getLibraries(language, category);
@@ -120,6 +120,9 @@
 				} else {
 					return lib.imageURL;
 				}
+			},
+			getURLLabel(url) {
+				return (url.includes("github") ? "github" : "website");
 			}
 		},
 		mounted() {

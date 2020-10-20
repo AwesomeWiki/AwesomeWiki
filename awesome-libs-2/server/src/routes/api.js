@@ -17,6 +17,7 @@ router.get('/languages', (req,res) => {
   var test_url = 'http://localhost:8081/languages.json';
   var url      = 'http://localhost/core/languages';
 
+  // core app api call
   axios.get(url)
     .then(languages => {
       res.status(200).json(languages.data);
@@ -24,6 +25,7 @@ router.get('/languages', (req,res) => {
     .catch(error => {
       res.status(500).send(error)
   });
+  // end api call
 
 });
 
@@ -32,9 +34,9 @@ router.get('/:language/categories', (req, res) => {
 
   var language = req.params.language;
 
-  var test_url = 'http://localhost:8081/' + language + '.json';
   var url      = 'http://localhost/core/' + language + '/categories';
   
+  // core app api call
   axios.get(url)
     .then(categories => {
       res.status(200).json(categories.data);
@@ -42,6 +44,7 @@ router.get('/:language/categories', (req, res) => {
     .catch(error => {
       res.status(500).send(error)
   });
+  // end api call
 
 });
 
@@ -50,11 +53,10 @@ router.get('/:language/:category/libraries', (req,res) => {
 
 	var language = req.params.language;
   var category = req.params.category;
-  
-  var test_url = 'http://localhost:8081/' + category + '.json';
+
   var url = 'http://localhost/core/' + language + '/category/' + category;
 
-  // Mock api call
+  // core app api call
   axios.get(url)
     .then(cat => {
       res.status(200).json(cat.data);
@@ -62,7 +64,7 @@ router.get('/:language/:category/libraries', (req,res) => {
     .catch(error => {
       res.status(500).send(error)
   });
-	// End mock api call
+	// end api call
 
 });
 
@@ -73,10 +75,9 @@ router.get('/:language/:category/:library', (req,res) => {
 	var category = req.params.category;
   var library  = req.params.library;
   
-  var test_url = 'http://localhost:8081/' + library + '.json';
   var url = 'http://localhost/core/' + language + '/' + library;
 
-  // Mock api call
+  // core app api call
   axios.get(url)
     .then(lib => {
       res.status(200).json(lib.data);
@@ -84,7 +85,27 @@ router.get('/:language/:category/:library', (req,res) => {
     .catch(error => {
       res.status(500).send(error)
   });
-	// End mock api call
+	// end api call
+
+});
+
+// Get articles for a language + library
+router.get('/:language/:category/:library/articles', (req,res) => {
+
+  var language  = req.params.language;
+  var library   = req.params.library;
+
+  var url = 'http://localhost/core/' + language + '/' + library + '/articles';
+
+  // core app api call
+  axios.get(url)
+    .then(articles => {
+      res.status(200).json(articles.data);
+    })
+    .catch(error => {
+      res.status(500).send(error);
+  });
+  //end api call
 
 });
 

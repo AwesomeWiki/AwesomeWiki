@@ -13,6 +13,9 @@ export default {
 	},
 	getLibInfo(language, category, library) {
 		return Api().get('/' + language + '/' + category + '/' + library);
+	},
+	getArticles(language, category, library) {
+		return Api().get('/' + language + '/' + category + '/' + library + '/articles');
 	}
 }
 
