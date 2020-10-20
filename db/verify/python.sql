@@ -84,8 +84,15 @@ BEGIN
    ASSERT u = 'https://github.com/django-cache-machine/django-cache-machine';
    author := (SELECT metadata -> 'info' ->> 'author' AS author  from api.python_package where fqn = 'pylint');
    ASSERT author = 'Python Code Quality Authority';
-   author_email := (SELECT metadata  -> 'info' ->> 'author_email' AS author  from api.python_package where fqn = 'pylint');
+   author_email := (SELECT metadata  -> 'info' ->> 'author_email' AS email  from api.python_package where fqn = 'pylint');
    ASSERT author_email = 'code-quality@python.org';
+   -- Testing Gray's code
+   author := (SELECT metadata -> 'info' ->> 'author' AS author  from api.python_package where fqn = 'nude-py');
+   ASSERT author = 'Hideo Hattori';
+   author_email := (SELECT metadata  -> 'info' ->> 'author_email' AS email  from api.python_package where fqn = 'vcr-py');
+   ASSERT author_email = 'me@kevinmccarthy.org';
+
+
 END $$;
 
 ROLLBACK;
