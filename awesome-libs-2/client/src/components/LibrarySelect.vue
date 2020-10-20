@@ -51,17 +51,18 @@
 						</v-row>
 			
 						<div class="my-4 subtitle-1">
-							Description
+							About
 						</div>
 				
-						<div>Insert description</div>
+						<div>{{ lib.description }}</div>
+						
 					</v-card-text>
 
 					<v-divider class="mx-4"></v-divider>
 
 					<v-card-text>
 						<div class="my-4 subtitle-1">
-							<a :href="lib.url">{{getURLLabel(lib.url)}}</a>
+							<a :href="lib.url" target="_blank">{{ getURLLabel(lib.url) }}</a>
 						</div>
 					</v-card-text>					
 
@@ -74,18 +75,8 @@
           		</v-card>
         	</v-col>
       	</v-row>
-			<!--
-			<v-layout wrap align-center>
-				<v-flex xs12 sm6 d-flex>
-					<v-select v-model="selectedLibrary" :items="libraries" item-text="name" label="Select a library" persistent-hint return-object single-line></v-select>
-				</v-flex>
-				<v-btn rounded block color="blue darken-3" dark large @click="selectCategory()">CONTINUE</v-btn>
-			</v-layout>
-			-->
 	</v-container>
 </template>
-
-<!-- TODO: This should display all available libraries in a card layout -->
 
 <script>
 /* eslint-disable */
@@ -116,7 +107,7 @@
 
 				var lib = this.libraries[index];
 				if (!lib.hasOwnProperty("imageURL") || lib.imageURL == null) {
-					lib.imageURL = '../assets/lib_placeholder.png'; //'https://github.ncsu.edu/engr-csc-sdc/2020FallTeam03/blob/master/assets/lib_placeholder.png?raw=true';
+					lib.imageURL = '../assets/lib_placeholder.png';
 				} else {
 					return lib.imageURL;
 				}
