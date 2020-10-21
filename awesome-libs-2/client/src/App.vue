@@ -7,26 +7,19 @@
     >
       <div class="d-flex align-center">
         <v-img
-          alt="Vuetify Logo"
+          alt="AwesomeLibs Logo"
           class="shrink mr-2"
           contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          src="@/assets/awesomelibs_logo_1.png"
           transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
+          width="150"
+          height="150"
         />
       </div>
 
       <v-spacer></v-spacer>
 
+      <!--
       <v-btn
         href="https://github.com/vuetifyjs/vuetify/releases/latest"
         target="_blank"
@@ -34,7 +27,11 @@
       >
         <span class="mr-2">Latest Release</span>
         <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+        -->
+
+      <span class="group pa-2">
+        <v-icon @click="home">mdi-home</v-icon>
+      </span>
     </v-app-bar>
 
     <!-- Where routed views are rendered -->
@@ -49,13 +46,16 @@
 
 export default {
   name: 'App',
-
   components: {
     
   },
-
   data: () => ({
-    //
+    
   }),
+  methods: {
+    home() {
+      window.location.replace(window.location.origin + "/#/");
+    },
+  }
 };
 </script>
