@@ -29,7 +29,7 @@ export default new Router({
     {
       path: '/:language/:category/libraries',
       name: 'LibrarySelect',
-      component: LibrarySelect
+      component: LibrarySelect,
     },
     {
       path: '/:language/:category/:library',
