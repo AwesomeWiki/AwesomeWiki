@@ -45,7 +45,6 @@ class Package(multicorn.ForeignDataWrapper):
         
         if fqn_qual is None:
             raise Exception("You must provide an FQN for a library to query this endpoint")
-git
         fqn_name = fqn_qual.value
 
         categories = getAllParsedData(self)
