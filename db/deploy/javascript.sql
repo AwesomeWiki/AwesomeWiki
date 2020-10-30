@@ -1,4 +1,4 @@
--- Deploy awesome:python to pg
+-- Deploy awesome:javascript to pg
 
 BEGIN;
 
@@ -37,7 +37,7 @@ CREATE FOREIGN TABLE IF NOT EXISTS api.javascript_package (
     "fqn" CHARACTER VARYING,
     "url" CHARACTER VARYING,
     "metadata" JSON 
-) SERVER javascript_package OPTIONS (
+) SERVER javascriptgit _package OPTIONS (
     repo 'sorrycc/awesome-javascript'
 );
 

@@ -1,4 +1,4 @@
--- Revert awesome:python from pg
+-- Revert awesome:javascript from pg
 
 BEGIN;
 

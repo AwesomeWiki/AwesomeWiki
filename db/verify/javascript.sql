@@ -1,7 +1,7 @@
--- Verify awesome:languages on pg
+-- Verify awesome:javascript on pg
 
 BEGIN;
 
-SELECT pg_catalog.has_table_privilege('api.languages', 'select');
+SELECT pg_catalog.has_table_privilege('api.awesome_javascript', 'select');
 
 ROLLBACK;

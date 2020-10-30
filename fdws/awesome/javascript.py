@@ -10,7 +10,7 @@ sys.path.insert(0, '/var/AwesomeWiki/library_scraper')
 from markdown import getPackageName
 
 
-def findPackageFromPyPi(package):
+def findPackageFromNPM(package):
     try:
         url = 'https://api.npms.io/v2/package/' + package
         ##This is from https://stackoverflow.com/questions/16627227/http-error-403-in-python-3-web-scraping
@@ -45,7 +45,7 @@ class Package(multicorn.ForeignDataWrapper):
         
         if fqn_qual is None:
             raise Exception("You must provide an FQN for a library to query this endpoint")
-
+git
         fqn_name = fqn_qual.value
 
         categories = getAllParsedData(self)
@@ -68,10 +68,10 @@ class Package(multicorn.ForeignDataWrapper):
                 line['name'] = libName
                 line['fqn'] = slugify(libName)
                 line['url'] = url
-                package_info = findPackageFromPyPi(fqn)
+                package_info = findPackageFromNPM(fqn)
                 if package_info is None:
                     package_info = getPackageName(url)
-                    package_info = findPackageFromPyPi(package_info)
+                    package_info = findPackageFromNPM(package_info)
                 line['metadata'] = package_info
 
                 break
