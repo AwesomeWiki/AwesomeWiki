@@ -37,7 +37,7 @@ CREATE FOREIGN TABLE IF NOT EXISTS api.javascript_package (
     "fqn" CHARACTER VARYING,
     "url" CHARACTER VARYING,
     "metadata" JSON 
-) SERVER python_package OPTIONS (
+) SERVER javascript_package OPTIONS (
     repo 'sorrycc/awesome-javascript'
 );
 
