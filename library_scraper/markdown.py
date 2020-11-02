@@ -32,7 +32,7 @@ def getLinks(soup, url_processed):
     return links
 
 
-def getPackageName(url, depth=0, results_pq = PriorityQueue(), url_processed=None):
+def getPackageName(url, search_expr="pip\sinstall\s((?:-U\s)?([\w-]+))", depth=0, results_pq = PriorityQueue(), url_processed=None):
     # cut off searches at a certain depth
     if depth >= 3:
         return None
@@ -56,8 +56,7 @@ def getPackageName(url, depth=0, results_pq = PriorityQueue(), url_processed=Non
     soup = BeautifulSoup(response, features="lxml")
     text_of_soup = soup.get_text().strip()  # turn html into text
 
-    regex_results = re.findall(
-        "pip\sinstall\s((?:-U\s)?([\w-]+))", text_of_soup)
+    regex_results = re.findall(search_expr, text_of_soup)
     print(regex_results)
 
     if regex_results != None:
@@ -77,7 +76,7 @@ def getPackageName(url, depth=0, results_pq = PriorityQueue(), url_processed=Non
     # TODO Fix recursive searching - doesn't always work 
     # for each look on the page, look for for the package name 
     for link in links.queue:
-        name = getPackageName(link[1], depth+1, results_pq, url_processed)
+        name = getPackageName(link[1], search_expr, depth+1, results_pq, url_processed)
         # if we find a match, return it 
         if name != None:
             return name
@@ -91,7 +90,7 @@ def getPackageName(url, depth=0, results_pq = PriorityQueue(), url_processed=Non
 
 def assertCorrectPkgName(address, expected):
     print(address)
-    package_name = getPackageName(address)
+    package_name = getPackageName(address, search_expr="pip\sinstall\s((?:-U\s)?([\w-]+))")
     print("EXPECTED: " + expected)
     print("ACTUAL: " + package_name)
 
