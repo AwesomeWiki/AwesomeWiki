@@ -74,9 +74,13 @@ class Package(multicorn.ForeignDataWrapper):
                 line['fqn'] = slugify(libName)
                 line['url'] = url
                 package_info = findPackageFromNPM(fqn)
+                with open('/tmp/awesome_py_log3', 'w') as f:
+                    print(package_info, file=f)
                 if package_info is None:
                     package_info = getPackageName(url)
                     package_info = findPackageFromNPM(package_info)
+                    with open('/tmp/awesome_py_log3', 'w') as f:
+                        print(package_info, file=f)
                 line['metadata'] = package_info
 
                 break
