@@ -79,7 +79,7 @@ class Package(multicorn.ForeignDataWrapper):
                 if package_info is None:
                     package_info = getPackageName(url)
                     package_info = findPackageFromNPM(package_info)
-                    with open('/tmp/awesome_py_log3', 'w') as f:
+                    with open('/tmp/awesome_py_log4', 'w') as f:
                         print(package_info, file=f)
                 line['metadata'] = package_info
 
