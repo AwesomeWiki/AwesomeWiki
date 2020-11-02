@@ -21,15 +21,19 @@ def findPackageFromNPM(package):
             print("Mozilla", file=f)
         web_byte = urlopen(req).read()
         webpage = web_byte.decode('utf-8')
-        result1 = json.loads(webpage)
+        result = json.loads(webpage)
         with open('/tmp/awesome_py_log2', 'w') as f:
-            print(result1, file=f)
-        result1.pop('analyzedAt')
+            print(result, file=f)
+        result.pop('analyzedAt')
+        with open('/tmp/awesome_py_log3', 'w') as f:
+            print(result, file=f)
         info = json.dumps(result)
+        with open('/tmp/awesome_py_log4', 'w') as f:
+            print(info, file=f)
     except:
         return None
-    with open('/tmp/awesome_py_log3', 'w') as f:
-        print(package_info, file=f)
+    with open('/tmp/awesome_py_log5', 'w') as f:
+        print(info, file=f)
     return info
 
 class Package(multicorn.ForeignDataWrapper):
@@ -76,7 +80,7 @@ class Package(multicorn.ForeignDataWrapper):
                 line['fqn'] = slugify(libName)
                 line['url'] = url
                 package_info = findPackageFromNPM(fqn)
-                with open('/tmp/awesome_py_log4', 'w') as f:
+                with open('/tmp/awesome_py_log7', 'w') as f:
                     print(package_info, file=f)
                 # if package_info is None:
                 #     package_info = getPackageName(url)
