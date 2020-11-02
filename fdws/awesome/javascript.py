@@ -13,27 +13,15 @@ from markdown import getPackageName
 def findPackageFromNPM(package):
     try:
         url = 'https://api.npms.io/v2/package/' + package
-        with open('/tmp/awesome_py_log0', 'w') as f:
-            print(url, file=f)
         ##This is from https://stackoverflow.com/questions/16627227/http-error-403-in-python-3-web-scraping
         req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        with open('/tmp/awesome_py_log1', 'w') as f:
-            print("Mozilla", file=f)
         web_byte = urlopen(req).read()
         webpage = web_byte.decode('utf-8')
         result = json.loads(webpage)
-        with open('/tmp/awesome_py_log2', 'w') as f:
-            print(result, file=f)
         result.pop('analyzedAt')
-        with open('/tmp/awesome_py_log3', 'w') as f:
-            print(result, file=f)
         info = json.dumps(result)
-        with open('/tmp/awesome_py_log4', 'w') as f:
-            print(info, file=f)
     except:
         return None
-    with open('/tmp/awesome_py_log5', 'w') as f:
-        print(info, file=f)
     return info
 
 class Package(multicorn.ForeignDataWrapper):
@@ -80,8 +68,6 @@ class Package(multicorn.ForeignDataWrapper):
                 line['fqn'] = slugify(libName)
                 line['url'] = url
                 package_info = findPackageFromNPM(fqn)
-                with open('/tmp/awesome_py_log7', 'w') as f:
-                    print(package_info, file=f)
                 # if package_info is None:
                 #     package_info = getPackageName(url)
                 #     package_info = findPackageFromNPM(package_info)
