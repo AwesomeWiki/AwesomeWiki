@@ -96,7 +96,8 @@
 							"    pm.expect(pm.response.json()).to.deep.include({\r",
 							"        \"name\": \"pylint\",\r",
 							"        \"fqn\": \"pylint\",\r",
-							"        \"url\": \"https://www.pylint.org/\"\r",
+							"        \"url\": \"https://www.pylint.org/\",\r",
+							"        \"description\": \"A fully customizable source code analyzer. \"\r",
 							"    });\r",
 							"    skipTest = false;\r",
 							"});"
@@ -331,12 +332,12 @@
 	],
 	"variable": [
 		{
-			"id": "e5e5c634-ba02-410d-b81a-49efc0c52bfc",
+			"id": "1b1682d6-6bbc-4c7b-b9a4-0df7e17c417c",
 			"key": "instance",
 			"value": ""
 		},
 		{
-			"id": "68ff8d69-95ac-465b-ac9f-5af55f556022",
+			"id": "a92f62dc-d1e3-4da4-b873-cc6448b01f57",
 			"key": "root_host",
 			"value": "dev.libraries.wiki"
 		}
