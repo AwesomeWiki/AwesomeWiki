@@ -72,8 +72,6 @@ class Package(multicorn.ForeignDataWrapper):
                     package_info = getPackageName(
                         url, search_expr="npm\sinstall\s((?:-U\s)?([\w-]+))")
                     package_info = findPackageFromNPM(package_info)
-                #     with open('/tmp/awesome_py_log4', 'w') as f:
-                #         print(package_info, file=f)
                 line['metadata'] = package_info
 
                 break

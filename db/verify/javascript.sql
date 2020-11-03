@@ -75,8 +75,8 @@ BEGIN
    ASSERT n = 'Bower';
    u := (SELECT url FROM api.javascript_package WHERE fqn = 'seajs');
    ASSERT u = 'https://github.com/seajs/seajs';
-   s := (SELECT category_slug FROM api.javascript_package WHERE fqn = 'lodjs');
-   ASSERT s = 'loaders';
+   s := (SELECT category_slug FROM api.javascript_package WHERE fqn = 'modulejs');
+   ASSERT s = 'modulejs';
    n := (SELECT name FROM api.javascript_package WHERE fqn  = 'headjs' AND url = 'https://github.com/headjs/headjs');
    ASSERT n = 'HeadJS';
    u := (SELECT url FROM api.javascript_package WHERE fqn = 'bit' AND category_slug = 'component-managment');
