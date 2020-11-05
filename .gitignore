@@ -4,3 +4,5 @@
 .vscode/.ropeproject/objectdb
 
 .vscode/settings.json
+
+*.docx

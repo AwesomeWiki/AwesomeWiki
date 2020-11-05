@@ -1,0 +1,1 @@
+pandoc --reference-doc="../pandoc-reference.docx" -o "AwesomeWiki Developer Guide.docx" index.md
