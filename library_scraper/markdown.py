@@ -9,6 +9,9 @@ from difflib import SequenceMatcher
 
 from queue import PriorityQueue
 
+from datetime import datetime
+from datetime import timedelta
+
 # help from https://stackoverflow.com/questions/17388213/find-the-similarity-metric-between-two-strings
 
 
@@ -32,10 +35,23 @@ def getLinks(soup, url_processed):
     return links
 
 
-def getPackageName(url, search_expr="pip\sinstall\s((?:-U\s)?([\w-]+))", depth=0, results_pq = PriorityQueue(), url_processed=None):
+def getPackageName(url, search_expr="pip\sinstall\s((?:-U\s)?([\w-]+))", depth=0, results_pq=PriorityQueue(), url_processed=None, start_time=datetime.now()):
+    # set up default arguments 
+    if depth == 0:
+        start_time = datetime.now()
+        results_pq = PriorityQueue()
     # cut off searches at a certain depth
     if depth >= 3:
         return None
+    # cut off searches after a certain amount of time
+    if (datetime.now() - start_time).total_seconds() >= 1 * 60:
+        print("timeout: " + str((datetime.now() - start_time).total_seconds()))
+        if depth == 0 and not results_pq.empty():
+            return results_pq.get()[1]
+        elif depth == 0 and results_pq.empty():
+            return url_processed
+        else:
+            return None
 
     if url_processed == None:
         # get repo name (if github)
@@ -52,7 +68,7 @@ def getPackageName(url, search_expr="pip\sinstall\s((?:-U\s)?([\w-]+))", depth=0
         response = requests.get(url).content
     except Exception:
         return None
-    #print(response)
+    # print(response)
     soup = BeautifulSoup(response, features="lxml")
     text_of_soup = soup.get_text().strip()  # turn html into text
 
@@ -61,23 +77,25 @@ def getPackageName(url, search_expr="pip\sinstall\s((?:-U\s)?([\w-]+))", depth=0
 
     if regex_results != None:
         # loop through matches
-        for regex in regex_results:  
+        for regex in regex_results:
             # loop through tuple of capture groups
-            for cap_group in regex:  
-                match_similarity = similarity(cap_group.casefold(), url_processed.casefold())
+            for cap_group in regex:
+                match_similarity = similarity(
+                    cap_group.casefold(), url_processed.casefold())
                 if match_similarity >= 0.7:
                     return regex[0]
                 else:
                     results_pq.put((1 - match_similarity, cap_group))
             print(regex)  # TODO add support for multiple pip-like keywords
-    
+
     links = getLinks(soup, url_processed)
 
-    # TODO Fix recursive searching - doesn't always work 
-    # for each look on the page, look for for the package name 
+    # TODO Fix recursive searching - doesn't always work
+    # for each look on the page, look for for the package name
     for link in links.queue:
-        name = getPackageName(link[1], search_expr, depth+1, results_pq, url_processed)
-        # if we find a match, return it 
+        name = getPackageName(
+            link[1], search_expr=search_expr, depth=depth+1, results_pq=results_pq, url_processed=url_processed, start_time=start_time)
+        # if we find a match, return it
         if name != None:
             return name
 
@@ -88,22 +106,25 @@ def getPackageName(url, search_expr="pip\sinstall\s((?:-U\s)?([\w-]+))", depth=0
     else:
         return None
 
+
 def assertCorrectPkgName(address, expected):
     print(address)
-    package_name = getPackageName(address, search_expr="pip\sinstall\s((?:-U\s)?([\w-]+))")
+    package_name = getPackageName(
+        address, search_expr="pip\sinstall\s((?:-U\s)?([\w-]+))")
     print("EXPECTED: " + expected)
     print("ACTUAL: " + package_name)
 
     return expected == package_name
+
 
 def getMarkdownPkgNames(markdown_dict):
     results = []
 
     for category in my_dict:
         for address in my_dict[category]:
-            address = address[address.find('(')+1:-1] # exclude parentheses 
+            address = address[address.find('(')+1:-1]  # exclude parentheses
             print(address)
-            if address.find('http') != -1: # if valid address
+            if address.find('http') != -1:  # if valid address
                 package_name = getPackageName(address)
                 if package_name == None:
                     package_name = "None"
@@ -111,9 +132,11 @@ def getMarkdownPkgNames(markdown_dict):
                 results.append(package_name)
     return results
 
+
 if __name__ == '__main__':
 
-    file_path = os.path.dirname(os.path.abspath(__file__)) + "\\source_data\\awesome-python-master-README.md"
+    file_path = os.path.dirname(os.path.abspath(
+        __file__)) + "\\source_data\\awesome-python-master-README.md"
     #file_path = "/Users/personal/Downloads/awesome-python-master/README.md"
 
     my_dict = {}
@@ -144,29 +167,27 @@ if __name__ == '__main__':
     my_dict[key] = newList
     # print(my_dict)
 
-    #getMarkdownPkgNames(my_dict)
+    # getMarkdownPkgNames(my_dict)
 
     # standard case
-    assertCorrectPkgName("https://github.com/tylerlaberge/PyPattyrn", "pypattyrn")
+    assertCorrectPkgName(
+        "https://github.com/tylerlaberge/PyPattyrn", "pypattyrn")
     # TODO -U case
-    assertCorrectPkgName("https://github.com/tylerlaberge/PyPattyrn", "pypattyrn")
+    assertCorrectPkgName(
+        "https://github.com/tylerlaberge/PyPattyrn", "pypattyrn")
     # TODO -r red herring
-    assertCorrectPkgName("https://github.com/tylerlaberge/PyPattyrn", "pypattyrn")
+    assertCorrectPkgName(
+        "https://github.com/tylerlaberge/PyPattyrn", "pypattyrn")
     # separate page starting at github
-    # TODO support more complicated commands such as 
+    # TODO support more complicated commands such as
     # "sudo pip3 install ajenti-panel ajenti.plugin.core ajenti.plugin.dashboard ajenti.plugin.settings ajenti.plugin.plugins"
     # assertCorrectPkgName("https://github.com/ajenti/ajenti", "pypattyrn")
     # separate page
     assertCorrectPkgName("https://twistedmatrix.com/trac/", "twisted")
     # separate page with www
     assertCorrectPkgName("http://www.pyqtgraph.org/", "pyqtgraph")
-    # separate page with totally different website name 
-    assertCorrectPkgName("https://www.crummy.com/software/BeautifulSoup/bs4/doc/", "beautifulsoup4")
+    # separate page with totally different website name
+    assertCorrectPkgName(
+        "https://www.crummy.com/software/BeautifulSoup/bs4/doc/", "beautifulsoup4")
     # separate page with 2 clicks to get name
     assertCorrectPkgName("https://github.com/wooey/wooey", "wooey")
-
-    original_stdout = sys.stdout  # Save a reference to the original standard output
-
-    # TODO Store responses in something
-
-    sys.stdout = original_stdout
