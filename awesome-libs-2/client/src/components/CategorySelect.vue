@@ -1,6 +1,7 @@
+<!-- eslint-disable -->
 <template>
   <v-container>
-    <div>I am a {{ this.$route.params.language }} programmer looking for a library to help me with </div>
+    <!-- <div>I am a {{ this.$route.params.language }} programmer looking for a library to help me with </div> -->
     <v-row justify="center">
       <v-col v-for="cat in categories" :key="cat" cols="auto">
         <div
@@ -15,21 +16,21 @@
             v-ripple="{ center: true }"
             @click="goToCat(cat)"
           >
-            <v-row class="justify-center">
+            <!-- <v-row class="justify-center">
               <img src="../assets/lib_placeholder.png" alt="Placeholder" />
-            </v-row>
+            </v-row> -->
 
             <v-card-title class="justify-center"> {{ cat.name }} </v-card-title>
 
-            <v-divider class="mx-4"></v-divider>
+            <!-- <v-divider class="mx-4"></v-divider> -->
 
-            <v-card-text>
+            <!-- <v-card-text>
               <div class="my-4 subtitle-1">Type of Library</div>
-            </v-card-text>
+            </v-card-text> -->
 
-            <v-row align="center" justify="center">
+            <!-- <v-row align="center" justify="center">
               <v-btn @click="selectCategory(cat)">Show libraries</v-btn>
-            </v-row>
+            </v-row> -->
           </v-card>
         </div>
       </v-col>
@@ -40,6 +41,7 @@
 <!-- TODO: This should display all available categories in a card layout -->
 
 <script>
+/* eslint-disable */
 import LibsService from "@/services/LibsService";
 export default {
   name: "CategorySelect",
