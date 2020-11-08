@@ -59,3 +59,14 @@ export default {
   }
 };
 </script>
+
+<style>
+.v-main {
+    width: 100%;
+    height: 100%;
+    background: url('../src/assets/stripe-bg-highres.png') center center;
+    background-repeat: repeat;
+    background-size: contain;
+    background-color: white;
+  }
+</style>

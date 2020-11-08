@@ -20,9 +20,9 @@
         I am a 
       </h1>
 
-      <v-layout wrap align-center>
+      <v-layout wrap justify-center>
         <v-flex xs12 sm6 d-flex>
-          <v-select v-model="selectedItem" :items="languages" item-text="name" label="Select a language" persistent-hint return-object single-line></v-select>
+          <v-select v-model="selectedItem" :items="languages" item-text="name" label="Select a language" class="display-2 font-weight-bold mb-3" height=70 line-height=58 outlined persistent-hint return-object single-line></v-select>
         </v-flex>
         <v-btn rounded block color="blue darken-3" dark large @click="selectLanguage()">CONTINUE</v-btn>
       </v-layout>
@@ -62,3 +62,9 @@
     }
   }
 </script>
+
+<style>
+.v-select__selection--comma {
+    overflow: visible;
+}
+</style>
