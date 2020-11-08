@@ -69,7 +69,7 @@ class Package(multicorn.ForeignDataWrapper):
                 package_info = findPackageFromPyPi(fqn)
                 if package_info is None:
                     package_info = getPackageName(
-                        url, search_expr="pip\sinstall\s((?:-U\s)?([\w-]+))")
+                        url)
                     package_info = findPackageFromPyPi(package_info)
                 line['metadata'] = package_info
 
