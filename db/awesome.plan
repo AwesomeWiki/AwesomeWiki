@@ -6,3 +6,4 @@ awesome 2020-09-20T00:00:00Z ,,, <sam@NSS-EXODUS> # Pull out generic awesome cod
 python [awesome] 2020-09-21T21:47:55Z ,,, <sam@NSS-EXODUS> # Add Python foreign tables
 languages 2020-10-07T14:44:47Z ,,, <sam@NSS-EXODUS> # Add languages model to the database.
 articles 2020-10-16T17:40:17Z ,,, <sam@NSS-EXODUS> # Add an articles FDW and endpoint
+javascript 2020-11-02T19:36:31Z Sabrina Lo <slo4@sd-vm03> # Add JavaScript FDW

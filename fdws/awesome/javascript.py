@@ -3,20 +3,22 @@ import redis
 import requests, re, json, sys
 from slugify import slugify
 import urllib.request
+from urllib.request import Request, urlopen
 from .alist import getAllParsedData
 import sys
 sys.path.insert(0, '/var/AwesomeWiki/library_scraper')
 from markdown import getPackageName
 
 
-#Cite from https://www.powercms.in/blog/how-get-json-data-remote-url-python-script with some modifications
-def findPackageFromPyPi(package):
+def findPackageFromNPM(package):
     try:
-        url = 'https://pypi.python.org/pypi/' + package + '/json'
-        response = urllib.request.urlopen(url)
-        result = json.loads(response.read())
-        result.pop('urls')
-        result.pop('last_serial')
+        url = 'https://api.npms.io/v2/package/' + package
+        ##This is from https://stackoverflow.com/questions/16627227/http-error-403-in-python-3-web-scraping
+        req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+        web_byte = urlopen(req).read()
+        webpage = web_byte.decode('utf-8')
+        result = json.loads(webpage)
+        result.pop('analyzedAt')
         info = json.dumps(result)
     except:
         return None
@@ -43,7 +45,6 @@ class Package(multicorn.ForeignDataWrapper):
         
         if fqn_qual is None:
             raise Exception("You must provide an FQN for a library to query this endpoint")
-
         fqn_name = fqn_qual.value
 
         categories = getAllParsedData(self)
@@ -66,11 +67,11 @@ class Package(multicorn.ForeignDataWrapper):
                 line['name'] = libName
                 line['fqn'] = slugify(libName)
                 line['url'] = url
-                package_info = findPackageFromPyPi(fqn)
+                package_info = findPackageFromNPM(fqn)
                 if package_info is None:
                     package_info = getPackageName(
-                        url)
-                    package_info = findPackageFromPyPi(package_info)
+                        url, search_expr="npm\sinstall\s((?:-U\s)?([\w-]+))")
+                    package_info = findPackageFromNPM(package_info)
                 line['metadata'] = package_info
 
                 break
