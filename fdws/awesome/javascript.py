@@ -69,10 +69,16 @@ class Package(multicorn.ForeignDataWrapper):
                 line['url'] = url
                 package_info = findPackageFromNPM(fqn)
                 if package_info is None:
-                    package_info = getPackageName(
+                    package_name = getPackageName(
                         url, search_expr="npm\sinstall\s((?:-U\s)?([\w-]+))")
-                    package_info = findPackageFromNPM(package_info)
-                line['metadata'] = package_info
+                    if package_name is None:
+                        err = '{ "error":"There is a timeout from webscraping"}'
+                        line['metadata'] = json.loads(err)
+                    else:
+                        package_info = findPackageFromNPM(package_name)
+                        line['metadata'] = package_info
+                else:
+                    line['metadata'] = package_info
 
                 break
             if 'name' in line: break

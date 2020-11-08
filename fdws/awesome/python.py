@@ -68,10 +68,15 @@ class Package(multicorn.ForeignDataWrapper):
                 line['url'] = url
                 package_info = findPackageFromPyPi(fqn)
                 if package_info is None:
-                    package_info = getPackageName(
-                        url)
-                    package_info = findPackageFromPyPi(package_info)
-                line['metadata'] = package_info
+                    package_name = getPackageName(url)
+                    if package_name is None:
+                        err = '{ "error":"There is a timeout from webscraping"}'
+                        line['metadata'] = json.loads(err)
+                    else:
+                        package_info = findPackageFromPyPi(package_name)
+                        line['metadata'] = package_info
+                else:
+                    line['metadata'] = package_info
 
                 break
             if 'name' in line: break
