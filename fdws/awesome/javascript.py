@@ -71,8 +71,8 @@ class Package(multicorn.ForeignDataWrapper):
                 if package_info is None:
                     package_name = getPackageName(
                         url, search_expr="npm\sinstall\s((?:-U\s)?([\w-]+))")
-                        with open('/tmp/awesome_js_log', 'w') as f:
-                            print(package_name, file=f)
+                    with open('/tmp/awesome_js_log', 'w') as f:
+                        print(package_name, file=f)
                     if package_name is None:
                         err = '{ "error":"There is a timeout from webscraping"}'
                         err_json = json.loads(err)
