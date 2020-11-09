@@ -1,17 +1,20 @@
 # AwesomeWiki User Guide
 
-This guide shows how to use **AwesomeWiki Core** as a user who wishes to create their own application that utilizes **AwesomeWiki** services.
+This guide shows how to use **AwesomeWiki Core** for users who wish to create their own applications that utilize **AwesomeWiki** services.
 Topics discussed in this guide include:
 -   Use Cases
--   API
+-   AwesomeWiki API
 
 ## Use Cases
 
--   overview of design decisions / concepts behind FDWs and state
--   overview of existing integrations
--   component-by-component breakdown
+The goal of AwesomeWiki was to provide aggregation services to Awesome List content while still retaining the ability to have community curation.
+Currently, AwesomeWiki is limited to only gathering data on software libraries for Python and Javascript. Some example use cases for this data include:
+
+-   Filtering software libraries based on a particular problem that a user would like to solve
+-   Aggregating tutorials on a given software library
 
 ## API
 
--   overview of use case and design decisions (why a separate server?)
--   component by component breakdown
+AwesomeWiki core provides several API endpoints for getting information about supported languages, library categories, libraries, library details and tutorials/articles.
+
+
