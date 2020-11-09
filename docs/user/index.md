@@ -23,6 +23,6 @@ AwesomeWiki core provides several API endpoints for getting information about su
 |/:lang/categories|Returns the categories for a language, identified by that language’s slug.|[<br>&nbsp;{<br>&nbsp; name: “Admin Panels”, <br>&nbsp; slug: “admin-panels”<br>&nbsp;},<br>&nbsp;{<br>&nbsp; name: “Audio”, <br>&nbsp; slug: “audio”<br>&nbsp;},<br>&nbsp;{ ... },<br>&nbsp;...<br>]|
 |/:lang/:cat|Returns the libraries for a particular language and category, identified by their slugs.|[<br>&nbsp;{<br>&nbsp; name: “Pandas”, <br>&nbsp; fqn: “pandas”, <br>&nbsp; url: "pandas.pydata.org”<br>&nbsp;},<br>&nbsp;{ ... },<br>&nbsp;...<br>]|
 |/:lang/:fqn|Returns the information about a single library, based on it’s Fully Qualified Name (FQN).|{<br>&nbsp; name: “Pandas”,<br>&nbsp; fqn: “pandas”,<br>&nbsp; url: “pandas.pydata.org”, <br>&nbsp; info: { ... }<br>}|
-|/:lang/:fqn/articles|Returns a list of articles for a library based on it’s Fully Qualified Name (FQN).||
+|/:lang/:fqn/articles|Returns a list of articles for a library based on it’s Fully Qualified Name (FQN).|[<br>&nbsp; {<br>&nbsp; title: “A Gentle Visual Intro to Data Analysis in Python Using Pandas”,<br>&nbsp; url: “https://jalammar.github.io/gentle-visual-intro-to-data-analysis-python-pandas/”<br>&nbsp;},<br>&nbsp; { ... },<br>&nbsp; ...<br>&nbsp; ]|
 
 
