@@ -1,3 +1,8 @@
+TODO:
+-Format json code blocks
+-Replace magic quotes with regular quotes ""
+-Add screenshots/usability info for client app
+
 # AwesomeWiki User Guide
 
 This guide shows how to use **AwesomeWiki Core** for users who wish to create their own applications that utilize **AwesomeWiki** services.
