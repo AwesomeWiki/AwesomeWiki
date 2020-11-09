@@ -19,6 +19,6 @@ AwesomeWiki core provides several API endpoints for getting information about su
 
 | Path | Description | Example Response |
 |------|-------------|------------------|
-|/languages|Returns the list of languages supported.|[<br><t>{name: “JavaScript”,slug: “javascript”},<br><t>{name: “Python”,slug: “python”},<br><t>{ ... },<br><t>...<br>]|
+|/languages|Returns the list of languages supported.|[<br>&nbsp;{name: “JavaScript”,slug: “javascript”},<br>&nbsp;{name: “Python”,slug: “python”},<br>&nbsp;{ ... },<br>&nbsp;...<br>]|
 
 
