@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS api.languages (
 );
 
 INSERT INTO api.languages (slug, name) VALUES ('python', 'Python') ON CONFLICT DO NOTHING;
-
+INSERT INTO api.languages (slug, name) VALUES ('javascript', 'JavaScript') ON CONFLICT DO NOTHING;
 GRANT SELECT ON api.languages TO web_anon;
 
 COMMIT;
