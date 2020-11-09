@@ -2,7 +2,7 @@
 
 This guide shows how to use **AwesomeWiki Core** for users who wish to create their own applications that utilize **AwesomeWiki** services.
 Topics discussed in this guide include:
--   Use Cases
+-   Use cases
 -   AwesomeWiki API
 
 ## Use Cases
@@ -16,5 +16,20 @@ Currently, AwesomeWiki is limited to only gathering data on software libraries f
 ## API
 
 AwesomeWiki core provides several API endpoints for getting information about supported languages, library categories, libraries, library details and tutorials/articles.
+
+| Path | Description | Example Response |
+|------|-------------|------------------|
+|/languages|Returns the list of languages supported.|[
+ {
+  name: “JavaScript”,
+  slug: “javascript”
+ },
+ {
+  name: “Python”,
+  slug: “python”
+ },
+ { ... },
+ ...
+]|
 
 
