@@ -44,11 +44,13 @@ AwesomeWiki core provides several API endpoints for getting information about su
     </tr>
     <tr>
         <td>
+            /languages
         </td>
         <td>
+            Returns the list of languages supported.
         </td>
         <td>
-            ```
+            <pre lang="json">
                 [
                  {
                   name: "JavaScript",
@@ -61,7 +63,7 @@ AwesomeWiki core provides several API endpoints for getting information about su
                  { ... },
                  ...
                 ]
-            ```
+            </pre>
         </td>
     </tr>
 </table>
