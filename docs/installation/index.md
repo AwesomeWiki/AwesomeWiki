@@ -5,6 +5,10 @@ Follow the [Ansible installation guide](https://docs.ansible.com/ansible/latest/
 
 Please note that Ansible does not work well on Windows. If you are using Windows, please set up [WSL](https://ubuntu.com/wsl) on your local machine.  
 
+## Requirements:
+
+1. Ubuntu 20.04
+2. port 80 and 81 opened
 
 ## Step 1
 Edit **/etc/ansible/hosts** file , as a **root** user
@@ -103,3 +107,20 @@ Please replace **host** to your own host
 * Other Branch
   1. cd to the root of our repository (cloned on your control node, your local laptop)
   2. Run ```ansible-playbook ansible/_all.yml --extra-vars "branch=branchname"``` replacing branchname with your preferred branch name
+  
+ 
+ # Verification Plan
+ The followins are the options to verify the installation is successful:
+ 
+ 1. Browse to the application endpoit and make sure the application is up and running.
+ 2. Run the postman API test
+ 3. Postgres testing
+    * ssh into the vm
+    * sudo su postgres
+    * psql awesome
+    * run some test queries. 
+       * For example: select * from api.awesome_python;
+ 4. run verify scripts
+    * sudo su postgres
+    * cd db
+    * sqitch verify db:pg:awesome -f awesome.plan
