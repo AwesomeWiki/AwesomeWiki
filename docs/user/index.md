@@ -43,18 +43,18 @@ AwesomeWiki core provides several API endpoints for getting information about su
         </td>
         <td>
             <pre lang="json">
-                [
-                 {
-                  name: "JavaScript",
-                  slug: "javascript"
-                 },
-                 {
-                  name: "Python",
-                  slug: "python"
-                 },
-                 { ... },
-                 ...
-                ]
+            [
+             {
+              name: "JavaScript",
+              slug: "javascript"
+             },
+             {
+              name: "Python",
+              slug: "python"
+             },
+             { ... },
+             ...
+            ]
             </pre>
         </td>
     </tr>
@@ -67,6 +67,18 @@ AwesomeWiki core provides several API endpoints for getting information about su
         </td>
         <td>
             <pre lang="json">
+            [
+             {
+              name: “Admin Panels”,
+              slug: “admin-panels”
+             },
+             {
+              name: “Audio”,
+              slug: “audio”
+             },
+             { ... },
+             ...
+            ]
             </pre>
         </td>
     </tr>
@@ -79,6 +91,15 @@ AwesomeWiki core provides several API endpoints for getting information about su
         </td>
         <td>
             <pre lang="json">
+            [
+             {
+              name: “Pandas”,
+              fqn: “pandas”,
+              url: “pandas.pydata.org”
+             },
+             { ... },
+             ...
+            ]
             </pre>
         </td>
     </tr>
@@ -91,6 +112,12 @@ AwesomeWiki core provides several API endpoints for getting information about su
         </td>
         <td>
             <pre lang="json">
+            {
+              name: “Pandas”,
+              fqn: “pandas”,
+              url: “pandas.pydata.org”,
+              info: { ... }
+            }
             </pre>
         </td>
     </tr>
@@ -103,6 +130,14 @@ AwesomeWiki core provides several API endpoints for getting information about su
         </td>
         <td>
             <pre lang="json">
+            [
+             {
+               title: “A Gentle Visual Intro to Data Analysis in Python Using Pandas”,
+               url: “https://jalammar.github.io/gentle-visual-intro-to-data-analysis-python-pandas/”
+             },
+             { ... },
+             ...
+            ]
             </pre>
         </td>
     </tr>
