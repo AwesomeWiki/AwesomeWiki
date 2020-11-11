@@ -23,6 +23,7 @@ Our demo client application served as a proof of concept of how feasible the rea
 useful the information it gathered could be. The client application is a simple Node/Express/Vue application that uses AwesomeWiki core as a
 web API and then organizes the data that it accesses in a way that is readable.
 
+<img src="https://github.ncsu.edu/engr-csc-sdc/2020FallTeam03/blob/master/assets/fig1.PNG?raw=true">
 Fig 1. Language select
 
 Fig 2. Category select
