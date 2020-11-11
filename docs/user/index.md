@@ -48,7 +48,7 @@ AwesomeWiki core provides several API endpoints for getting information about su
         <td>
         </td>
         <td>
-            <pre lang="json">
+            ```
                 [
                  {
                   name: "JavaScript",
@@ -61,7 +61,7 @@ AwesomeWiki core provides several API endpoints for getting information about su
                  { ... },
                  ...
                 ]
-            </pre>
+            ```
         </td>
     </tr>
 </table>
