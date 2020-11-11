@@ -1,6 +1,3 @@
-TODO:
--Add screenshots/usability info for client app
-
 # AwesomeWiki User Guide
 
 This guide shows how to use **AwesomeWiki Core** for users who wish to create their own applications that utilize **AwesomeWiki** services.
@@ -24,15 +21,19 @@ useful the information it gathered could be. The client application is a simple 
 web API and then organizes the data that it accesses in a way that is readable.
 
 <img src="https://github.ncsu.edu/engr-csc-sdc/2020FallTeam03/blob/master/assets/fig1.PNG?raw=true">
-Fig 1. Language select
+<i>Fig 1. Language select
 
-Fig 2. Category select
+<img src="https://github.ncsu.edu/engr-csc-sdc/2020FallTeam03/blob/master/assets/fig2.PNG?raw=true">
+<i>Fig 2. Category select
 
-Fig 3. Library select
+<img src="https://github.ncsu.edu/engr-csc-sdc/2020FallTeam03/blob/master/assets/fig3.PNG?raw=true">
+<i>Fig 3. Library select
 
-Fig 4. Library info view (WIP)
+<img src="https://github.ncsu.edu/engr-csc-sdc/2020FallTeam03/blob/master/assets/fig4.PNG?raw=true">
+<i>Fig 4. Library info view (WIP)
 
-Fig 5. Articles view
+<img src="https://github.ncsu.edu/engr-csc-sdc/2020FallTeam03/blob/master/assets/fig5.PNG?raw=true">
+<i>Fig 5. Articles view
 
 ## API
 
