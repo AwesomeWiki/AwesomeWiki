@@ -129,8 +129,10 @@ AwesomeWiki core provides several API endpoints for getting information about su
             <pre lang="json">
             [
              {
-               "title": "A Gentle Visual Intro to<br>Data Analysis in Python Using Pandas",
-               "url": "https://jalammar.github.io/<br>gentle-visual-intro-to-data-analysis-python-pandas/"
+               "title": "A Gentle Visual Intro to
+                         Data Analysis in Python Using Pandas",
+               "url": "https://jalammar.github.io/
+                       gentle-visual-intro-to-data-analysis-python-pandas/"
              },
              {  },
             ]
