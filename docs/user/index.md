@@ -1,6 +1,4 @@
 TODO:
--Format json code blocks
--Replace magic quotes with regular quotes ""
 -Add screenshots/usability info for client app
 
 # AwesomeWiki User Guide
@@ -8,6 +6,7 @@ TODO:
 This guide shows how to use **AwesomeWiki Core** for users who wish to create their own applications that utilize **AwesomeWiki** services.
 Topics discussed in this guide include:
 -   Use cases
+-   Demo client application usability information
 -   AwesomeWiki API
 
 ## Use Cases
@@ -17,6 +16,22 @@ Currently, AwesomeWiki is limited to only gathering data on software libraries f
 
 -   Filtering software libraries based on a particular problem that a user would like to solve
 -   Aggregating tutorials on a given software library
+
+## Demo Client Application
+
+Our demo client application served as a proof of concept of how feasible the real-time web scraping capabilities of AwesomeWiki core would be and how
+useful the information it gathered could be. The client application is a simple Node/Express/Vue application that uses AwesomeWiki core as a
+web API and then organizes the data that it accesses in a way that is readable.
+
+Fig 1. Language select
+
+Fig 2. Category select
+
+Fig 3. Library select
+
+Fig 4. Library info view (WIP)
+
+Fig 5. Articles view
 
 ## API
 
