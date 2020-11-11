@@ -68,15 +68,14 @@ AwesomeWiki core provides several API endpoints for getting information about su
             <pre lang="json">
             [
              {
-              name: “Admin Panels”,
-              slug: “admin-panels”
+              "name": "Admin Panels",
+              "slug": "admin-panels"
              },
              {
-              name: “Audio”,
-              slug: “audio”
+              "name": "Audio",
+              "slug": "audio"
              },
-             { ... },
-             ...
+             {  },
             ]
             </pre>
         </td>
@@ -92,12 +91,11 @@ AwesomeWiki core provides several API endpoints for getting information about su
             <pre lang="json">
             [
              {
-              name: “Pandas”,
-              fqn: “pandas”,
-              url: “pandas.pydata.org”
+              "name": "Pandas",
+              "fqn": "pandas",
+              "url": "pandas.pydata.org"
              },
-             { ... },
-             ...
+             {  },
             ]
             </pre>
         </td>
@@ -107,15 +105,15 @@ AwesomeWiki core provides several API endpoints for getting information about su
             /:lang/:fqn
         </td>
         <td>
-            Returns the information about a single library, based on it’s Fully Qualified Name (FQN).
+            Returns the information about a single library, based on it’s Fully Qualified Name (FQN). Note that the info field will contain different metadata for every library.
         </td>
         <td>
             <pre lang="json">
             {
-              name: “Pandas”,
-              fqn: “pandas”,
-              url: “pandas.pydata.org”,
-              info: { ... }
+              "name": "Pandas",
+              "fqn": "pandas",
+              "url": "pandas.pydata.org",
+              "info": {  }
             }
             </pre>
         </td>
@@ -131,11 +129,10 @@ AwesomeWiki core provides several API endpoints for getting information about su
             <pre lang="json">
             [
              {
-               title: “A Gentle Visual Intro to Data Analysis in Python Using Pandas”,
-               url: “https://jalammar.github.io/gentle-visual-intro-to-data-analysis-python-pandas/”
+               "title": "A Gentle Visual Intro to Data Analysis in Python Using Pandas",
+               "url": "https://jalammar.github.io/gentle-visual-intro-to-data-analysis-python-pandas/"
              },
-             { ... },
-             ...
+             {  },
             ]
             </pre>
         </td>
