@@ -45,15 +45,14 @@ AwesomeWiki core provides several API endpoints for getting information about su
             <pre lang="json">
             [
              {
-              name: "JavaScript",
-              slug: "javascript"
+              "name": "JavaScript",
+              "slug": "javascript"
              },
              {
-              name: "Python",
-              slug: "python"
+              "name": "Python",
+              "slug": "python"
              },
-             { ... },
-             ...
+             {  },
             ]
             </pre>
         </td>
