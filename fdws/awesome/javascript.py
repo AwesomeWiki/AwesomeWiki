@@ -3,6 +3,7 @@ import redis
 import requests, re, json, sys
 from slugify import slugify
 import urllib.request
+import urllib
 from urllib.request import Request, urlopen
 from .alist import getAllParsedData
 import sys
@@ -12,17 +13,15 @@ from markdown import getPackageName
 
 def findPackageFromNPM(package):
     try:
-        url = 'https://api.npms.io/v2/package/' + package
-        ##This is from https://stackoverflow.com/questions/16627227/http-error-403-in-python-3-web-scraping
-        req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
-        web_byte = urlopen(req).read()
-        webpage = web_byte.decode('utf-8')
-        result = json.loads(webpage)
-        result.pop('analyzedAt')
-        info = json.dumps(result)
+        url = 'https://registry.npmjs.org/' + package
+        response = urllib.request.urlopen(url)
+        result = json.loads(response.read())
+        result.pop('versions')
+        result.pop('users')
+        result.pop('readme')
     except:
         return None
-    return info
+    return result
 
 class Package(multicorn.ForeignDataWrapper):
     def __init__(self, options, columns):
