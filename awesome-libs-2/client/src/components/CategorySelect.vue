@@ -11,34 +11,20 @@
         >
           <v-card
             elevation="24"
-            width="375"
-            height="450"
+            width="300"
+            height="300"
             v-ripple="{ center: true }"
             @click="goToCat(cat)"
           >
-            <!-- <v-row class="justify-center">
-              <img src="../assets/lib_placeholder.png" alt="Placeholder" />
-            </v-row> -->
 
-            <v-card-title class="justify-center"> {{ cat.name }} </v-card-title>
+            <v-card-title align="center" justify="center"> {{ cat.name }} </v-card-title>
 
-            <!-- <v-divider class="mx-4"></v-divider> -->
-
-            <!-- <v-card-text>
-              <div class="my-4 subtitle-1">Type of Library</div>
-            </v-card-text> -->
-
-            <!-- <v-row align="center" justify="center">
-              <v-btn @click="selectCategory(cat)">Show libraries</v-btn>
-            </v-row> -->
           </v-card>
         </div>
       </v-col>
     </v-row>
   </v-container>
 </template>
-
-<!-- TODO: This should display all available categories in a card layout -->
 
 <script>
 /* eslint-disable */

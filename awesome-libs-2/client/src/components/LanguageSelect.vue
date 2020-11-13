@@ -3,7 +3,7 @@
 
     <v-spacer></v-spacer>
 
-    <v-row class="text-center">
+    <!-- <v-row class="text-center">
       <v-col cols="12">
         <v-img
           :src="require('../assets/logo.svg')"
@@ -12,7 +12,9 @@
           height="200"
         />
       </v-col>
-    </v-row>
+    </v-row> -->
+
+    <br><br>
 
     <v-row class="mb-2">
 
@@ -22,7 +24,8 @@
 
       <v-layout wrap justify-center>
         <v-flex xs12 sm6 d-flex>
-          <v-select v-model="selectedItem" :items="languages" item-text="name" label="Select a language" class="display-2 font-weight-bold mb-3" height=70 line-height=58 outlined persistent-hint return-object single-line></v-select>
+          <v-select v-model="selectedItem" :items="languages" item-text="name" label="Select a language" height=70 line-height=58 outlined persistent-hint return-object single-line></v-select>
+          <!-- class="display-2 font-weight-bold mb-3" -->
         </v-flex>
         <v-btn rounded block color="blue darken-3" dark large @click="selectLanguage()">CONTINUE</v-btn>
       </v-layout>

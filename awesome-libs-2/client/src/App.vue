@@ -10,10 +10,10 @@
           alt="AwesomeLibs Logo"
           class="shrink mr-2"
           contain
-          src="@/assets/awesomelibs_logo_1.png"
+          src="@/assets/awesome_logo.png"
           transition="scale-transition"
-          width="150"
-          height="150"
+          width="125"
+          height="125"
         />
       </div>
 
