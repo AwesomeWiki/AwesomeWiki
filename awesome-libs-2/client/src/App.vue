@@ -10,10 +10,10 @@
           alt="AwesomeLibs Logo"
           class="shrink mr-2"
           contain
-          src="@/assets/awesomelibs_logo_1.png"
+          src="@/assets/awesome_logo.png"
           transition="scale-transition"
-          width="150"
-          height="150"
+          width="125"
+          height="125"
         />
       </div>
 
@@ -30,7 +30,7 @@
         -->
 
       <span class="group pa-2">
-        <v-icon @click="home">mdi-home</v-icon>
+        <v-icon v-ripple="{ center: true }" @click="home">mdi-home</v-icon>
       </span>
     </v-app-bar>
 
@@ -59,3 +59,14 @@ export default {
   }
 };
 </script>
+
+<style>
+.v-main {
+    width: 100%;
+    height: 100%;
+    background: url('../src/assets/stripe-bg-highres.png') center center;
+    background-repeat: repeat;
+    background-size: contain;
+    background-color: white;
+  }
+</style>

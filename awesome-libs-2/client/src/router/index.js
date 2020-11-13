@@ -13,8 +13,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
+      name: 'LanguageSelect',
+      component: LanguageSelect
     },
     {
       path: '/languages',
@@ -29,7 +29,7 @@ export default new Router({
     {
       path: '/:language/:category/libraries',
       name: 'LibrarySelect',
-      component: LibrarySelect
+      component: LibrarySelect,
     },
     {
       path: '/:language/:category/:library',
