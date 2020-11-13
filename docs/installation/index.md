@@ -1,15 +1,57 @@
 # Prerequisites
 
 ## Install Ansible for your operation system!
-Follow the [Ansible installation guide](https://docs.ansible.com/ansible/latest/installation_guide/index.html) on how to install Ansible on your local machine.
+Follow [Ansible installation guide](https://docs.ansible.com/ansible/latest/installation_guide/index.html) on how to install Ansible on your local machine.
 
 Please note that Ansible does not work well on Windows. If you are using Windows, please set up [WSL](https://ubuntu.com/wsl) on your local machine.  
 
-## Requirements:
+# Requirements:
 
 1. Ubuntu 20.04
 2. port 80 and 81 opened
 
+# High-Level of the Playbook
+
+### _all.yml
+This is the yaml file you will use directly when running the ansible-playbook.
+The *hosts: sdc* references the configuration in your Installation Step 1, where you specify your host.
+Below the host are the tasks that Ansible is going to run. 
+
+### setup-postgres.yml
+This will update apt to use postgres repository and then install Postgres and Multicorn. Once they are installed, it will create **awesome** database, api schema, and then install Multicorn extension on 'awesome' database in the 'api' schema.
+
+### setup-postgrest.yml
+This will download and extract PostgREST, create roles(web_anon group role, grant permission to web_anon, create authenticator user, and add authenticator to web_anon) for PostgREST requests. Next, it will copy PostgREST configuration file from ```setup-postgrest/awesome.conf``` to ```/var/postgrest/awesome.conf```. Last, it will add PostgREST as a service.
+
+### setup-redis.yml
+This will download Redis, copy redis configuration from ```setup-redis/redis.conf``` to ```/etc/redis/redis.conf``` with proper permission, and restart redis.
+
+### install-sqitch.yml
+This will install sqitch with its dependencies.
+
+### clone-application.yml
+This will clone the AwesomeWiki repository to ```/var/Awesome```. Before cloning the repository, it will install git. Moreover, it will grab the ```ansible_user``` and ```github_personal_token``` from your Installation Step 1 configuration. The defualt branch it will clone is master.
+
+### install-application-fdw.yml
+This will overwrite remote FDW with the local version you currently have in your local machine. Afterward, it will install pip, python libraries (setuptools, requests, redis, and python-slugify), and AwesomeWiki FDWs.
+
+### provision-db.yml
+This will overwrite remote Sqitch with the local version you currently have in your local machine. Next, it will run deploy the database and then rebase (revert and redeploy) the database.
+
+### setup-client-app.yml
+This will clone the AwesomeWiki repository to ```/var/Awesome```. Before cloning the repository, it will install git. Moreover, it will grab the ```ansible_user``` and ```github_personal_token``` from your Installation Step 1 configuration. The defualt branch it will clone is master.
+
+### setup-nginx.yml
+This install Nginx, configure open firewall ports, enable firewall. Then disable default site, copy Nginx congifuration for awesome-client, enable site for awesome-client, and restart nginx to pick up the changes. 
+
+### _redeploy-fdw.yml
+This will run the install-application-fdw.yml, provision-db.yml, restart PostgreSQL and PostgREST to pick up the new changes that developer made without running setup for difference services.
+
+### _setup-nginx.yml
+This will run the setup-nginx.yml to set up the nginx.
+
+
+# Installation
 ## Step 1
 Edit **/etc/ansible/hosts** file , as a **root** user
 <br /> Below is the example, cite from [ansible/ansible GitHub](https://github.com/ansible/ansible/blob/devel/examples/hosts.yaml):
@@ -112,7 +154,7 @@ Please replace **host** to your own host
  # Verification Plan
  The followins are the options to verify the installation is successful:
  
- 1. Browse to the application endpoit and make sure the application is up and running.
+ 1. Browse to the application endpoint and make sure the application is up and running.
  2. Run the postman API test
  3. Postgres testing
     * ssh into the vm
