@@ -19,9 +19,10 @@ def findPackageFromNPM(package):
         result.pop('versions')
         result.pop('users')
         result.pop('readme')
+        info = json.dumps(result)
     except:
         return None
-    return result
+    return info
 
 class Package(multicorn.ForeignDataWrapper):
     def __init__(self, options, columns):
