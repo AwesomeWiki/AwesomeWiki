@@ -15,14 +15,6 @@
 						v-ripple="{ center: true }"
 						@click="goToLib(lib)"
 					>
-						<!--
-						<v-row class="justify-center">
-							<v-img
-								max-width="200"
-								:src="require('../assets/lib_placeholder.png')"
-							></v-img>
-						</v-row>
-						-->
 
 						<v-row class="justify-center">
 							<img
@@ -71,13 +63,6 @@
 								<a :href="lib.url" target="_blank" @click="clickedLink = true">{{ getURLLabel(lib.url) }}</a>
 							</div>
 						</v-card-text>					
-
-						<v-row
-							align="center"
-							justify="center"
-						>
-							<v-btn @click="selectLibrary(lib)">Show more</v-btn>
-						</v-row>
 					</v-card>
 				</div>
         	</v-col>

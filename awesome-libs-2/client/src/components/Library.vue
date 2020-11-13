@@ -7,21 +7,23 @@
     >
       <v-card-title class="justify-center"> {{ this.$route.params.library }} </v-card-title>
       <v-col>
+        <!-- TODO: Figure out how to display certain fields based on a condition (i.e. the language selected) -->
         <v-card-text>
-          <a :href="lib.url"> {{ getURLLabel(lib.url) }} </a>
-          <div><b>Extended description: </b> {{ lib.metadata.info.description }}</div><br>
-          <div><b>Keywords: </b>{{ lib.metadata.info.keywords }} </div><br>
-          <div><b>Classifiers: </b>{{ JSON.stringify(lib.metadata.info.classifiers) }}</div><br>
-          <div><b>Summary: </b>{{ lib.metadata.info.summary }}</div><br>
-          <div><b>Version: </b>{{ lib.metadata.info.version }}</div><br>
-          <div><b>License: </b>{{ lib.metadata.info.license }} </div><br>
-          <div><b>Author: </b>{{ lib.metadata.info.author }}</div><br>
-          <div><b>Author email: </b>{{ lib.metadata.info.author_email }}</div><br>
-          <div><b>Download link: </b>{{ lib.metadata.info.download_url }}</div><br>
-          <div><b>Home page: </b>{{ lib.metadata.info.home_page }} </div><br>
-          <div><b>Package URL: </b>{{ lib.metadata.info.package_url }}</div><br>
-          <div><b>Project URL: </b>{{ lib.metadata.info.project_url }}</div><br>
-          <div><b>Release URL: </b>{{ lib.metadata.info.release_url}}</div><br>
+          <a :href="lib.url" target="_blank"> {{ getURLLabel(lib.url) }} </a><br><br><br>
+          <div v-if="$route.params.language == 'javascript'"><b>Description: </b>{{ lib.metadata.description}}</div><br>
+          <div v-if="$route.params.language == 'python'"><b>Author: </b>{{ lib.metadata.info.author }}</div><br>
+          <div v-if="$route.params.language == 'python'"><b>Author email: </b>{{ lib.metadata.info.author_email }}</div><br>
+          <div v-if="$route.params.language == 'python'"><b>Summary: </b>{{ lib.metadata.info.summary }}</div><br>
+          <div v-if="$route.params.language == 'python'"><b>Version: </b>{{ lib.metadata.info.version }}</div><br>
+          <div v-if="$route.params.language == 'python'"><b>License: </b>{{ lib.metadata.info.license }} </div><br>
+          <div v-if="$route.params.language == 'python'"><b>Extended description: </b> {{ lib.metadata.info.description }}</div><br>
+          <div v-if="$route.params.language == 'python'"><b>Keywords: </b>{{ lib.metadata.info.keywords }} </div><br>
+          <div v-if="$route.params.language == 'python'"><b>Classifiers: </b>{{ JSON.stringify(lib.metadata.info.classifiers) }}</div><br>
+          <div v-if="$route.params.language == 'python' && lib.metadata.info.download_url != ''"><a :href="lib.metadata.info.download_url" target="_blank"><b>Download link</b></a></div><br>
+          <div v-if="$route.params.language == 'python' && lib.metadata.info.home_page != ''"><a :href="lib.metadata.info.home_page" target="_blank"><b>Home page</b></a></div><br>
+          <div v-if="$route.params.language == 'python' && lib.metadata.info.package_url != ''"><a :href="lib.metadata.info.package_url" target="_blank"><b>Package URL</b></a></div><br>
+          <div v-if="$route.params.language == 'python' && lib.metadata.info.project_url != ''"><a :href="lib.metadata.info.project_url" target="_blank"><b>Project URL</b></a></div><br>
+          <div v-if="$route.params.language == 'python' && lib.metadata.info.release_url != ''"><a :href="lib.metadata.info.release_url" target="_blank"><b>Release URL</b></a></div><br>
         </v-card-text>
       </v-col>
       <v-col>
