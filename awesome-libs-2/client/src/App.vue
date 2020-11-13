@@ -30,7 +30,7 @@
         -->
 
       <span class="group pa-2">
-        <v-icon @click="home">mdi-home</v-icon>
+        <v-icon v-ripple="{ center: true }" @click="home">mdi-home</v-icon>
       </span>
     </v-app-bar>
 
