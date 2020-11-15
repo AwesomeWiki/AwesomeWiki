@@ -1,23 +1,8 @@
 <template>
   <v-container>
-
     <v-spacer></v-spacer>
-
-    <!-- <v-row class="text-center">
-      <v-col cols="12">
-        <v-img
-          :src="require('../assets/logo.svg')"
-          class="my-3"
-          contain
-          height="200"
-        />
-      </v-col>
-    </v-row> -->
-
     <br><br>
-
-    <v-row class="mb-2">
-
+    <v-row v-if="languages != null" class="mb-2">
       <h1 class="display-2 font-weight-bold mb-3">
         I am a 
       </h1>
@@ -33,13 +18,10 @@
       <h1 class="display-2 font-weight-bold mb-3">
         programmer
       </h1>
-      
     </v-row>
 
   </v-container>
 </template>
-
-<!-- TODO: Fix formatting of dropdown menu -->
 
 <script>
   import LibsService from '@/services/LibsService'
