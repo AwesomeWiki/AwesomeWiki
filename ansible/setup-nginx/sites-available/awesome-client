@@ -15,13 +15,13 @@ server {
     location /core/ {
         rewrite ^/core/python/categories/?$ /core/awesome_python_categories last;
         rewrite ^/core/python/category/([a-zA-Z\-]+)/?$ /core/awesome_python?select=name,fqn,url,description&category_slug=eq.$1 last;
-        rewrite ^/core/python/([a-zA-Z\-]+)/articles/?$ /core/articles?select=title,url&fqn=eq.$1&language=eq.python last;
-        rewrite ^/core/python/([a-zA-Z\-]+)/?$ /core/single/python_package?fqn=eq.$1 last;
+        rewrite ^/core/python/([a-zA-Z0-9\-]+)/articles/?$ /core/articles?select=title,url&fqn=eq.$1&language=eq.python last;
+        rewrite ^/core/python/([a-zA-Z0-9\-]+)/?$ /core/single/python_package?fqn=eq.$1 last;
         rewrite ^/core/python/?$ /core/awesome_python last;
         rewrite ^/core/javascript/categories/?$ /core/awesome_javascript_categories last;
         rewrite ^/core/javascript/category/([a-zA-Z\-]+)/?$ /core/awesome_javascript?select=name,fqn,url,description&category_slug=eq.$1 last;
-        rewrite ^/core/javascript/([a-zA-Z\-]+)/articles/?$ /core/articles?select=title,url&fqn=eq.$1&language=eq.javascript last;
-        rewrite ^/core/javascript/([a-zA-Z\-]+)/?$ /core/single/javascript_package?fqn=eq.$1 last;
+        rewrite ^/core/javascript/([a-zA-Z0-9\-]+)/articles/?$ /core/articles?select=title,url&fqn=eq.$1&language=eq.javascript last;
+        rewrite ^/core/javascript/([a-zA-Z0-9\-]+)/?$ /core/single/javascript_package?fqn=eq.$1 last;
         rewrite ^/core/javascript/?$ /core/awesome_javascript last;
         proxy_pass http://localhost:3000/;
     }
