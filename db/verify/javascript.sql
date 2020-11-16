@@ -81,13 +81,8 @@ BEGIN
    ASSERT n = 'HeadJS';
    u := (SELECT url FROM api.javascript_package WHERE fqn = 'bit' AND category_slug = 'component-managment');
    ASSERT u = 'https://github.com/teambit/bit';
---    d := (select metadata -> 'collected' -> 'metadata' ->> 'description' AS de  from api.javascript_package where fqn = 'npm');
---    ASSERT d = 'a package manager for JavaScript';
-   -- Testing Gray's code
---    author := (select metadata -> 'collected' -> 'metadata' ->> 'description' AS description  from api.javascript_package where fqn = 'npm';);
---    ASSERT author = 'Hideo Hattori';
---    author_email := (SELECT metadata  -> 'info' ->> 'author_email' AS email  from api.javascript_package where fqn = 'vcr-py');
---    ASSERT author_email = 'me@kevinmccarthy.org';
+   d := (select metadata ->> 'description' AS de  from api.javascript_package where fqn = 'html5-boilerplate');
+   ASSERT d = 'A professional front-end template for building fast, robust, and adaptable web apps or sites.';
 END $$;
 
 ROLLBACK;
