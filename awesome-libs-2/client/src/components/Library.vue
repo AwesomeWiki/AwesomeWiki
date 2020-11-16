@@ -10,7 +10,7 @@
       <v-col>
         <v-card-text>
           <div v-if="lib != null">
-            <a :href="lib.url" target="_blank"> {{ getURLLabel(lib.url) }} </a><br><br><br>
+            <a :href="lib.url" target="_blank"> {{ getURLLabel(lib.url) }} </a><br><br>
             <!-- Display javascript library metadata -->
             <div v-if="$route.params.language == 'javascript'">
               <div><b>Author: </b>{{ lib.metadata.author.name }}</div><br>
@@ -42,7 +42,7 @@
         </v-card-text>
       </v-col>
       <v-col>
-        <v-row>
+        <v-row v-if="articles != null && articles.length > 0">
           <v-expansion-panels focusable inset>
             <v-expansion-panel>
               <v-expansion-panel-header>Articles</v-expansion-panel-header>
@@ -55,6 +55,9 @@
               </v-expansion-panel-content>
             </v-expansion-panel>
           </v-expansion-panels>
+        </v-row>
+        <v-row v-else justify="center" align="center">
+          No articles found! :(
         </v-row>
       </v-col>
     </v-card>
