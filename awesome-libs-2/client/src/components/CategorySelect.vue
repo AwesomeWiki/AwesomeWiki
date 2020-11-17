@@ -2,7 +2,7 @@
 <template>
   <v-container>
     <!-- <div>I am a {{ this.$route.params.language }} programmer looking for a library to help me with </div> -->
-    <v-row justify="center">
+    <v-row v-if="categories != null" justify="center">
       <v-col v-for="cat in categories" :key="cat" cols="auto">
         <div
           class="zoom"
