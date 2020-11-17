@@ -49,5 +49,41 @@ In order to create a functional FDW that integrates with AwesomeWiki, you'll nee
 
 ## AwesomeWiki MVP 1
 
--   overview of use case and design decisions (why a separate server?)
--   component by component breakdown
+![Top Level Design of MVP 1](assets/mvp.png)
+
+### Directory Structure
+
+The entire MVP is contained in the `awesome-libs-2/` directory. This directory is split into two directories, one for the server and one for the client frontend.
+
+### Express Server
+
+Our MVP application hosts a separate server. This may seem redundant, but this server demonstrates how most developers would build applications on top of AwesomeWiki. Some potential benefits of using a separate server (rather than just connecting straight to the AwesomeWiki Core API from JavaScript in the browser frontend) are:
+
+-   Keeping Core API keys secret (API keys don't exist yet, but when they do you'd want them to be secure)
+-   Annotating data from Core with your own data for a particular application without modifying the core schema
+-   Adding advanced caching beyond what's provided in the Core
+
+Right now, the server is implemented using [Express](https://expressjs.com/), and is a simple proxy for the Core API. It also serves the compiled client application to users. A rough overview of the server source files (located in `awesome-libs-2/server/src`) is:
+
+-   `app.js` - the main entrypoint for the server, which sets up hosting for the client application and imports the other routes
+-   `routes/api.js` - the main routes file, which implements all the routes for the MVP (and proxies those routes to/from the Core API)
+
+You'll also notice the `awesome-libs-2/server/src/public` directory. This hosts static files. We used this in an earlier stage of the application, to mock API endpoints before they were functional on the Core. It is no longer used, but you can add files here and use them to test new API endpoints under development.
+
+### Client Application
+
+The MVP application is a simple Vue single-page application.
+
+Full commands to build and run the frontend are located in `awesome-libs-2/client/README.md`. The client uses a frontend library called [Vuetify](https://vuetifyjs.com/en/) for its frontend display components. We also define a few custom components. These are located in `awesome-libs-2/client/src/components/*.vue` and are as follows:
+
+-   `Home.vue` - the homepage for the application, which links directly to the language select page
+-   `LanguageSelect.vue` - the language select screen, which pulls a list of languages from the API and links to the category select screen
+-   `CategorySelect.vue` - the category select screen, which pulls a list of categories for a language and links to the library select screen
+-   `LibrarySelect.vue` - the library select screen, which pulls a list of libraries for a language and a category, and links to a library detail page
+-   `Library.vue` - the library detail page, which displays metadata about a library from the API
+
+Some additional client source files (under `awesome-libs-2/client/src`) that you'll likely want to familiarize yourself with are:
+
+-   `App.vue` - the main structure page of the application, which instantiates the router and includes other pages
+-   `router/index.js` - the routes file, which defines which frontend routes route to each component
+-   `services/LibsService.js` - the service provider which maps resource requests to calls to the API
