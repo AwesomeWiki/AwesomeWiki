@@ -185,7 +185,7 @@ To verify that the installation is successful, complete one or more of the follo
 3.  Test the PostgreSQL database directly:
     -   SSH into the VM
     -   `sudo su postgres`
-        ` `psql awesome`
+        `psql awesome`
     -   Run some test queries.
         -   For example: `select \* from api.awesome_python;`
 4.  Run the Sqitch verify scripts
